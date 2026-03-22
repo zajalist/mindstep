@@ -8,6 +8,7 @@
  */
 
 import { ExerciseController } from "./ExerciseController";
+// @ts-ignore – SIK resolved by Lens Studio at runtime
 import { Interactable } from "SpectaclesInteractionKit.lspkg/Components/Interaction/Interactable/Interactable";
 
 interface Utensil {

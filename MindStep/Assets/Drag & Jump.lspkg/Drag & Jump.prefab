@@ -1,0 +1,155 @@
+- !<ObjectPrefab/de9ea65c-d1c9-4075-88a2-8e9ca8c37d9b>
+  PackagePath: ""
+  objects:
+    - !<own> 6c309450-4b89-44a9-aa03-7554a379cae1
+  LazyLoading: false
+  RetainAssets: true
+- !<RenderMeshVisual/4aa8267d-e6e0-4a73-8368-d05c6b59f008>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 860976db-199e-4ee3-ab44-adfdfbf31335
+  Mesh: !<reference> 43cf21e3-9fc0-4fa7-a296-2f64b1b4b14f
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<SceneObject/6c309450-4b89-44a9-aa03-7554a379cae1>
+  PrefabRemaps:
+    - 4aa8267d-e6e0-4a73-8368-d05c6b59f008: 4aa8267d-e6e0-4a73-7c97-2fa394a60ff7
+    - 6c309450-4b89-44a9-aa03-7554a379cae1: 6c309450-4b89-44a9-55fc-8aab5c86351e
+    - 7d9e3fd7-c2f8-471a-b36c-5bcdf3f8cb97: 7d9e3fd7-c2f8-471a-4c93-a4320c073468
+    - 879afdab-a876-456b-91c4-e00c026137e4: 879afdab-a876-456b-6e3b-1ff3fd9ec81b
+    - bfc8e93c-1c09-4e4b-bbde-8bf59e33f42a: bfc8e93c-1c09-4e4b-4421-740a61cc0bd5
+    - c201eea9-4e3b-410d-aa30-2b48cd839e8b: c201eea9-4e3b-410d-55cf-d4b7327c6174
+    - ee5ec41a-a5db-45c9-b09a-ba73eeebe7fe: ee5ec41a-a5db-45c9-4f65-458c11141801
+    - fca8aba4-76ef-4e76-bf59-43c4ace620d4: fca8aba4-76ef-4e76-40a6-bc3b5319df2b
+  Name: Script to add control to object (for games)
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> c201eea9-4e3b-410d-aa30-2b48cd839e8b
+  Components:
+    []
+- !<SceneObject/7d9e3fd7-c2f8-471a-b36c-5bcdf3f8cb97>
+  PrefabRemaps:
+    []
+  Name: octopus
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> ee5ec41a-a5db-45c9-b09a-ba73eeebe7fe
+    - !<own> bfc8e93c-1c09-4e4b-bbde-8bf59e33f42a
+  Components:
+    []
+- !<ScriptComponent/879afdab-a876-456b-91c4-e00c026137e4>
+  PrefabRemaps:
+    []
+  Name: Script
+  Enabled: true
+  ScriptAsset: !<reference> 69c97994-5bd4-49aa-a541-a869497bbdb0
+  ScriptInputsDefault:
+    positionCenterX: true
+    horizontalJumpHeight: true
+    verticalJumpDuration: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      targetObject: !<reference.SceneObject> ee5ec41a-a5db-45c9-b09a-ba73eeebe7fe
+      positionLeftX: !<float> -15.000000
+      positionCenterX: !<float> 0.000000
+      positionRightX: !<float> 15.000000
+      horizontalTransitionDuration: 0.300000
+      horizontalJumpHeight: !<float> 2.000000
+      verticalJumpHeight: !<float> 20.000000
+      verticalJumpDuration: 0.500000
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/bfc8e93c-1c09-4e4b-bbde-8bf59e33f42a>
+  PrefabRemaps:
+    []
+  Name: Ground
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: -31.524401, z: -31.041800}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 4.746996, y: 2.575960, z: 2.879221}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 4aa8267d-e6e0-4a73-8368-d05c6b59f008
+- !<SceneObject/c201eea9-4e3b-410d-aa30-2b48cd839e8b>
+  PrefabRemaps:
+    []
+  Name: Script
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 7d9e3fd7-c2f8-471a-b36c-5bcdf3f8cb97
+  Components:
+    - !<own> 879afdab-a876-456b-91c4-e00c026137e4
+- !<SceneObject/ee5ec41a-a5db-45c9-b09a-ba73eeebe7fe>
+  PrefabRemaps:
+    []
+  Name: octopus
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: -9.578835, z: -31.041775}
+    Rotation: {x: -90.000000, y: -90.000000, z: 0.000000}
+    Scale: {x: 0.592564, y: 0.592564, z: 0.592564}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> fca8aba4-76ef-4e76-bf59-43c4ace620d4
+- !<RenderMeshVisual/fca8aba4-76ef-4e76-bf59-43c4ace620d4>
+  PrefabRemaps:
+    []
+  Name: component_9
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 860976db-199e-4ee3-ab44-adfdfbf31335
+    - !<reference> 0a7af798-a45c-4cc8-91da-ef2fc089537b
+  Mesh: !<reference> d153a7f8-567b-4c7e-9fae-c37ba0f3f000
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}

@@ -26,9 +26,7 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
-    exitButton: false
-    progressDotsImage: false
-    stepText: false
+    {}
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -38,15 +36,10 @@
   Attachments:
     []
   DefaultScriptInputs:
-    - stepText: !<reference.Text> 00000000-0000-0000-0000-000000000000
-      progressDotsImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
-      exitButton: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+    -
+      {}
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"group_start", "label":"Exercise HUD"}'
-    - // @input Component.Text stepText
-    - // @input Component.Image progressDotsImage
-    - // @input AssignableType exitButton
-    - '// @ui {"widget":"group_end"}'
+    []

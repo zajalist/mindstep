@@ -26,10 +26,7 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
-    itemSpacing: false
-    statusText: false
-    taskItemPrefab: false
-    taskScrollView: false
+    {}
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -39,17 +36,10 @@
   Attachments:
     []
   DefaultScriptInputs:
-    - taskScrollView: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
-      taskItemPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
-      statusText: !<reference.Text> 00000000-0000-0000-0000-000000000000
-      itemSpacing: 5.500000
+    -
+      {}
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"group_start", "label":"Task List Setup"}'
-    - '// @input SceneObject taskScrollView {"hint":"ScrollView container for task items"}'
-    - '// @input Asset.ObjectPrefab taskItemPrefab {"hint":"Prefab to instantiate for each task"}'
-    - '// @input Component.Text statusText {"hint":"Text to show loading state"}'
-    - '// @input float itemSpacing = 5.5 {"hint":"Vertical spacing between task items in cm"}'
-    - '// @ui {"widget":"group_end"}'
+    []

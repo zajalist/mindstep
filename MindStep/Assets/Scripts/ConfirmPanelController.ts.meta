@@ -26,9 +26,7 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
-    exerciseDescriptionText: false
-    exerciseTitleText: false
-    screenshotImage: false
+    {}
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -38,15 +36,10 @@
   Attachments:
     []
   DefaultScriptInputs:
-    - screenshotImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
-      exerciseTitleText: !<reference.Text> 00000000-0000-0000-0000-000000000000
-      exerciseDescriptionText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+    -
+      {}
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"group_start", "label":"Confirm Panel UI"}'
-    - '// @input Component.Image screenshotImage {"hint":"Placeholder for exercise screenshot"}'
-    - // @input Component.Text exerciseTitleText
-    - // @input Component.Text exerciseDescriptionText
-    - '// @ui {"widget":"group_end"}'
+    []

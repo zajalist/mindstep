@@ -6,6 +6,7 @@
 
 import { FirebaseService, FirebaseAssignment } from "./FirebaseService";
 import { ExerciseData } from "./ExerciseData";
+// @ts-ignore – SIK module resolved by Lens Studio's package system at runtime
 import { ToggleButton } from "SpectaclesInteractionKit.lspkg/Components/UI/ToggleButton/ToggleButton";
 
 @component

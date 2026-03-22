@@ -1,123 +1,131 @@
 /**
  * ActivityBrowseController.ts
  * Manages the Browse tab in Dashboard.
- * Instantiates activity card items using GridContentCreator pattern.
- * First 2 items are interactive; rest are skeleton placeholders.
- * 3D world-space version – positions items using world transforms (no ScreenTransform).
+ * Finds pre-built activity card buttons in the ScrollWindow GridLayout
+ * and wires tap events for real exercises. Skeletons are display-only.
+ *
+ * Scene structure expected:
+ *   BrowsePanel > ActivityScrollView > BrowseScrollWindow > GridLayout > [Button cards]
+ *
+ * NOTE: All inputs are wired by MindStepUIManager at runtime.
  */
 
-import { ExerciseData } from "./ExerciseData";
-import { ActivityCardItem } from "./ActivityCardItem";
+import { ExerciseData, Exercise } from "./ExerciseData";
+import { MindStepUIManager } from "./MindStepUIManager";
+
+// Map of button scene object names to exercise IDs
+const CARD_EXERCISE_MAP: { [cardName: string]: string } = {
+  "Tomato Prep": "exercise_001",
+  "Set the Table": "exercise_002"
+};
 
 @component
 export class ActivityBrowseController extends BaseScriptComponent {
-  @ui.group_start("Activity Browse Setup")
-  @input
-  @hint("ScrollView container for activity cards")
+  // Wired by MindStepUIManager
   activityScrollView: SceneObject | null = null;
-
-  @input
-  @hint("Prefab to instantiate for each activity")
   activityCardPrefab: ObjectPrefab | null = null;
-
-  @input
-  @hint("Parent container for grid layout")
   gridContainer: SceneObject | null = null;
-
-  @input
-  @hint("Total activities to show (2 real + N skeleton)")
   totalActivitiesCount: number = 10;
-
-  @input
-  @hint("Vertical spacing between cards in cm")
   itemSpacing: number = 5.5;
-  @ui.group_end
 
-  private allExercises: any[] = [];
+  private hasInitialized = false;
 
   onAwake() {
     this.createEvent("OnStartEvent").bind(() => {
-      this.initialize();
+      const d1 = this.createEvent("UpdateEvent");
+      d1.bind(() => {
+        d1.enabled = false;
+        const d2 = this.createEvent("UpdateEvent");
+        d2.bind(() => {
+          d2.enabled = false;
+          if (!this.hasInitialized) this.initialize();
+        });
+      });
     });
   }
 
-  private initialize(): void {
+  initialize(): void {
+    if (this.hasInitialized) return;
+    this.hasInitialized = true;
     print("[ActivityBrowseController] Initializing");
-    this.loadActivities();
+    this.wireCardButtons();
   }
 
-  /**
-   * Load all activities and populate the grid.
-   */
-  private loadActivities(): void {
-    const realExercises = ExerciseData.getAllExercises();
+  private wireCardButtons(): void {
+    // Walk the scene tree under BrowsePanel to find all card buttons
+    const root = this.getSceneObject();
+    const buttons = this.findAllButtons(root);
+    print("[ActivityBrowseController] Found " + buttons.length + " card buttons");
 
-    print("[ActivityBrowseController] Found " + realExercises.length + " real exercises");
+    for (let i = 0; i < buttons.length; i++) {
+      const btnObj = buttons[i];
+      const name = btnObj.name;
+      const exerciseId = CARD_EXERCISE_MAP[name];
 
-    this.allExercises = [];
-
-    for (let i = 0; i < realExercises.length; i++) {
-      this.allExercises.push({
-        exerciseId: realExercises[i].id,
-        title: realExercises[i].title,
-        difficulty: realExercises[i].difficulty,
-        isSkeleton: false
-      });
-    }
-
-    const skeletonCount = this.totalActivitiesCount - realExercises.length;
-    for (let i = 0; i < skeletonCount; i++) {
-      this.allExercises.push({
-        exerciseId: "skeleton_" + i,
-        title: "Coming Soon",
-        difficulty: "unknown",
-        isSkeleton: true
-      });
-    }
-
-    print("[ActivityBrowseController] Total activities: " + this.allExercises.length);
-
-    this.populateActivityGrid();
-  }
-
-  /**
-   * Instantiate activity card items.
-   * Uses world-space positioning (no ScreenTransform).
-   */
-  private populateActivityGrid(): void {
-    if (!this.gridContainer || !this.activityCardPrefab) {
-      print("[ActivityBrowseController] Missing grid container or prefab");
-      return;
-    }
-
-    for (let i = 0; i < this.allExercises.length; i++) {
-      const activity = this.allExercises[i];
-
-      const cardItem = this.activityCardPrefab.instantiate(this.gridContainer);
-      cardItem.enabled = true;
-
-      // Position in world space
-      const transform = cardItem.getTransform();
-      const localPos = transform.getLocalPosition();
-      transform.setLocalPosition(new vec3(localPos.x, -this.itemSpacing * i, localPos.z));
-
-      const cardController = cardItem.getComponent(<any>"ActivityCardItem") as any as ActivityCardItem;
-      if (cardController) {
-        cardController.setExercise(activity.exerciseId, activity.title, activity.isSkeleton);
+      if (exerciseId) {
+        // Real exercise - wire tap to navigate to confirm
+        this.wireButton(btnObj, exerciseId);
+        print("[ActivityBrowseController] Wired card: " + name + " -> " + exerciseId);
+      } else {
+        print("[ActivityBrowseController] Skeleton card: " + name);
       }
-
-      print(
-        "[ActivityBrowseController] Created card: " +
-          activity.title +
-          (activity.isSkeleton ? " (skeleton)" : "")
-      );
     }
   }
 
-  /**
-   * Get all activities.
-   */
-  getAllActivities(): any[] {
-    return this.allExercises;
+  private wireButton(btnObj: SceneObject, exerciseId: string): void {
+    const btn = this.findButtonComp(btnObj);
+    if (btn && btn.onTriggerUp) {
+      btn.onTriggerUp.add(() => {
+        print("[ActivityBrowseController] Card tapped: " + exerciseId);
+        const ui = MindStepUIManager.getInstance();
+        if (ui) ui.transitionToConfirm(exerciseId);
+      });
+    } else if (btn && btn.onButtonPinched) {
+      btn.onButtonPinched.add(() => {
+        print("[ActivityBrowseController] Card pinched: " + exerciseId);
+        const ui = MindStepUIManager.getInstance();
+        if (ui) ui.transitionToConfirm(exerciseId);
+      });
+    } else {
+      print("[ActivityBrowseController] Warning: no trigger on " + btnObj.name);
+    }
+  }
+
+  private findButtonComp(obj: SceneObject): any {
+    // Try direct component type strings
+    const typeStrings = [
+      "SpectaclesUIKit.lspkg/Scripts/Components/Button/RectangleButton",
+      "RectangleButton"
+    ];
+    for (const ts of typeStrings) {
+      const c = obj.getComponent(ts as any) as any;
+      if (c && (c.onTriggerUp || c.onButtonPinched)) return c;
+    }
+    // Iterate all ScriptComponents to find one with onTriggerUp
+    const scripts = obj.getComponents("Component.ScriptComponent");
+    for (let i = 0; i < scripts.length; i++) {
+      const sc = scripts[i] as any;
+      if (sc && (sc.onTriggerUp || sc.onButtonPinched)) return sc;
+    }
+    return null;
+  }
+
+  private findAllButtons(obj: SceneObject): SceneObject[] {
+    const results: SceneObject[] = [];
+    for (let i = 0; i < obj.getChildrenCount(); i++) {
+      const child = obj.getChild(i);
+      if (this.findButtonComp(child)) {
+        results.push(child);
+      }
+      const nested = this.findAllButtons(child);
+      for (let j = 0; j < nested.length; j++) {
+        results.push(nested[j]);
+      }
+    }
+    return results;
+  }
+
+  getAllActivities(): Exercise[] {
+    return ExerciseData.getAllBrowseItems();
   }
 }

@@ -26,9 +26,7 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
-    guestButton: false
-    loginButton: false
-    statusText: false
+    {}
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -38,15 +36,10 @@
   Attachments:
     []
   DefaultScriptInputs:
-    - guestButton: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
-      loginButton: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
-      statusText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+    -
+      {}
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"group_start", "label":"Login UI"}'
-    - // @input AssignableType guestButton
-    - // @input AssignableType_1 loginButton
-    - // @input Component.Text statusText
-    - '// @ui {"widget":"group_end"}'
+    []

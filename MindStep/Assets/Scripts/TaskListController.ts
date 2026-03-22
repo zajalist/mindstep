@@ -2,55 +2,53 @@
  * TaskListController.ts
  * Fetches assignments from Firestore and instantiates TaskItem prefabs.
  * Manages the MyTasks panel in the Dashboard.
- * 3D world-space version – positions items using world transforms (no ScreenTransform).
+ * 3D world-space version - positions items using world transforms (no ScreenTransform).
+ *
+ * NOTE: Inputs wired by SceneWiring at runtime. No @input decorators to avoid
+ * Lens Studio checkUndefined crash when Inspector inputs are unassigned.
  */
 
 import { FirebaseService, FirebaseAssignment } from "./FirebaseService";
 import { SessionManager } from "./SessionManager";
 import { TaskItem } from "./TaskItem";
+import { ExerciseData } from "./ExerciseData";
 
 @component
 export class TaskListController extends BaseScriptComponent {
-  @ui.group_start("Task List Setup")
-  @input
-  @hint("ScrollView container for task items")
+  // Wired by SceneWiring
   taskScrollView: SceneObject | null = null;
-
-  @input
-  @hint("Prefab to instantiate for each task")
   taskItemPrefab: ObjectPrefab | null = null;
-
-  @input
-  @hint("Text to show loading state")
   statusText: Text | null = null;
-
-  @input
-  @hint("Vertical spacing between task items in cm")
   itemSpacing: number = 5.5;
-  @ui.group_end
 
   private assignments: FirebaseAssignment[] = [];
   private isLoading: boolean = false;
+  private hasInitialized = false;
 
   onAwake() {
     this.createEvent("OnStartEvent").bind(() => {
-      this.initialize();
+      // Defer 2 frames so SceneWiring can wire our properties first
+      const d1 = this.createEvent("UpdateEvent");
+      d1.bind(() => {
+        d1.enabled = false;
+        const d2 = this.createEvent("UpdateEvent");
+        d2.bind(() => {
+          d2.enabled = false;
+          if (!this.hasInitialized) this.initialize();
+        });
+      });
     });
   }
 
   private initialize(): void {
+    if (this.hasInitialized) return;
+    this.hasInitialized = true;
     print("[TaskListController] Initializing");
     this.fetchAndLoadTasks();
   }
 
-  /**
-   * Fetch assignments from Firestore and populate the task list.
-   */
   private async fetchAndLoadTasks(): Promise<void> {
-    if (this.isLoading) {
-      return;
-    }
-
+    if (this.isLoading) return;
     this.isLoading = true;
 
     const sessionManager = SessionManager.getInstance();
@@ -64,11 +62,8 @@ export class TaskListController extends BaseScriptComponent {
 
     try {
       const tasks = await FirebaseService.fetchAssignments(currentUser.userId);
-
       this.assignments = tasks;
-
       print("[TaskListController] Fetched " + tasks.length + " tasks");
-
       this.populateTaskList(tasks);
 
       if (this.statusText) {
@@ -76,7 +71,6 @@ export class TaskListController extends BaseScriptComponent {
       }
     } catch (error) {
       print("[TaskListController] Error fetching tasks: " + error);
-
       if (this.statusText) {
         this.statusText.text = "Failed to load tasks. Check internet and refresh.";
       }
@@ -85,36 +79,31 @@ export class TaskListController extends BaseScriptComponent {
     }
   }
 
-  /**
-   * Instantiate TaskItem prefabs for each assignment.
-   * Uses world-space positioning (no ScreenTransform).
-   */
   private populateTaskList(tasks: FirebaseAssignment[]): void {
-    if (!this.taskScrollView || !this.taskItemPrefab) {
-      print("[TaskListController] Missing scroll view or prefab");
+    const container = this.taskScrollView || this.getSceneObject();
+
+    // Clear existing items
+    const existingCount = container.getChildrenCount();
+    for (let i = existingCount - 1; i >= 0; i--) {
+      container.getChild(i).destroy();
+    }
+
+    if (!this.taskItemPrefab) {
+      print("[TaskListController] No prefab - using text fallback");
+      this.populateTasksFallback(tasks, container);
       return;
     }
 
-    // Clear existing items
-    const children = this.taskScrollView.getChildrenCount();
-    for (let i = children - 1; i >= 0; i--) {
-      const child = this.taskScrollView.getChild(i);
-      child.destroy();
-    }
-
-    // Instantiate prefab for each task
     for (let i = 0; i < tasks.length; i++) {
       const task = tasks[i];
-
-      const taskItem = this.taskItemPrefab.instantiate(this.taskScrollView);
+      const taskItem = this.taskItemPrefab.instantiate(container);
       taskItem.enabled = true;
 
-      // Position in world space (SIK ScrollView handles layout via GridContentCreator)
       const transform = taskItem.getTransform();
       const localPos = transform.getLocalPosition();
       transform.setLocalPosition(new vec3(localPos.x, -this.itemSpacing * i, localPos.z));
 
-      const taskItemController = taskItem.getComponent(<any>"TaskItem") as any as TaskItem;
+      const taskItemController = taskItem.getComponent("TaskItem" as any) as any as TaskItem;
       if (taskItemController) {
         taskItemController.setAssignment(task);
       }
@@ -123,17 +112,36 @@ export class TaskListController extends BaseScriptComponent {
     }
   }
 
-  /**
-   * Refresh task list (called when task is completed).
-   */
+  private populateTasksFallback(tasks: FirebaseAssignment[], container: SceneObject): void {
+    if (tasks.length === 0) {
+      if (this.statusText) this.statusText.text = "No tasks assigned.";
+      return;
+    }
+    for (let i = 0; i < tasks.length; i++) {
+      const task = tasks[i];
+      const exercise = ExerciseData.getExercise(task.exerciseId);
+      const title = exercise ? exercise.title : task.exerciseId;
+
+      const row = global.scene.createSceneObject("Task_" + title);
+      row.setParent(container);
+      row.getTransform().setLocalPosition(new vec3(0, -this.itemSpacing * i, 0));
+
+      const t = row.createComponent("Component.Text") as Text;
+      t.text =
+        title + "\n" +
+        task.completedReps + " / " + task.reps + " done" +
+        (task.doctorNotes ? "\n" + task.doctorNotes : "");
+      t.size = 16;
+
+      print("[TaskListController] Fallback row: " + title);
+    }
+  }
+
   refreshTaskList(): void {
     print("[TaskListController] Refreshing task list");
     this.fetchAndLoadTasks();
   }
 
-  /**
-   * Get assignments (for external queries).
-   */
   getAssignments(): FirebaseAssignment[] {
     return this.assignments;
   }

@@ -1,0 +1,44 @@
+- !<AssetImportMetadata/9fbd970f-1ec6-41a9-ac5d-1838192ee409>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 9b5529a5-aec7-4d84-991e-ddfb28d7f70a
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 9b5529a5-aec7-4d84-991e-ddfb28d7f70a
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> eb3dddb6-2515-44ad-9b1e-aae3ea7eafd2
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/eb3dddb6-2515-44ad-9b1e-aae3ea7eafd2>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 4c4a3bef-65b0-42f0-bebc-fff3147c1a6a
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    buildNow: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - buildNow: true
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input bool buildNow = true {"hint":"Set true once to build — auto-resets to false after build"}'

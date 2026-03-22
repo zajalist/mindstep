@@ -1,0 +1,73 @@
+- !<NativePackageDescriptor/d992474d-8d65-4c4c-83c2-1e7479480b53>
+  PackagePath: ""
+  StudioVersion:
+    major: 5
+    minor: 15
+    patch: 4
+    build: 26022322
+    type: Unset
+    buildFlavor: ""
+    timestamp: 0
+    commit: ""
+  Description: |-
+    drag-and-jump script that allows objects to:
+    Move smoothly between 3 horizontal positions (left/center/right) with drag gestures
+    Perform vertical jumps when dragged upward
+    Add bouncy animations during transitions
+  SvgIcon: |-
+    <?xml version="1.0" encoding="UTF-8"?>
+    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <defs>
+        <style>
+          .cls-1 {
+            font-size: 63.45px;
+          }
+    
+          .cls-1, .cls-2 {
+            font-family: Impact, Impact;
+          }
+    
+          .cls-3 {
+            fill: #fdfb00;
+            stroke: #000;
+            stroke-miterlimit: 10;
+            stroke-width: 7px;
+          }
+    
+          .cls-2 {
+            font-size: 28.85px;
+          }
+        </style>
+      </defs>
+      <rect class="cls-3" x="7.75" y="7.75" width="496.5" height="496.5" rx="41.31" ry="41.31"/>
+      <g>
+        <path d="M340.82,293.43l50.79-38.82H119.63l51.3,38.82-20.06,15.81-81.01-68.19v-.82l81.01-68.19,20.06,15.81-51.81,39.23H392.12l-51.3-39.23,20.06-15.81,81.26,68.19v.82l-81.26,68.19-20.06-15.81Z"/>
+        <path d="M243.53,236.37l-.19-130.07-36.45,38.57-14.85-15.24,63.84-61.53h.77l64.03,61.53-14.85,15.24-36.84-38.96,.19,130.46h-25.65Z"/>
+      </g>
+      <text class="cls-2" transform="translate(193 441.37)"><tspan x="0" y="0">FOR GAMES</tspan></text>
+      <text class="cls-1" transform="translate(91.07 397.18)"><tspan x="0" y="0">DRAG &amp; JUMP</tspan></text>
+    </svg>
+  SetupScript:
+    code: ""
+  VersionMajor: 1
+  VersionMinor: 0
+  VersionPatch: 0
+  UpdateCheckpoint: 76
+  ExportUid: d4138e34-ff6e-4fb0-960d-43d731d120a6
+  ComponentUid: d96687b8-afa8-4962-8a2e-0ea2167b9c65
+  PackagePolicy: CanBeUnpackedTransparent
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  Instantiable: !<reference> 00000000-0000-0000-0000-000000000000
+  AssetLibraryDependencyStructure: !<AssetLibraryDependencyStructure>
+    Name: ""
+    AssetId: ""
+    Hash: ""
+    Version:
+      major: 0
+      minor: 0
+      patch: 0
+      build: 0

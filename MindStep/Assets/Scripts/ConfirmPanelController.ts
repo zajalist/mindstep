@@ -2,23 +2,18 @@
  * ConfirmPanelController.ts
  * Manages the Confirm panel that shows exercise details before starting.
  * Displays screenshot (placeholder for MVP), title, and description.
+ *
+ * NOTE: Inputs wired by SceneWiring at runtime. No @input decorators.
  */
 
 import { ExerciseData } from "./ExerciseData";
 
 @component
 export class ConfirmPanelController extends BaseScriptComponent {
-  @ui.group_start("Confirm Panel UI")
-  @input
-  @hint("Placeholder for exercise screenshot")
-  screenshotImage: Image;
-
-  @input
-  exerciseTitleText: Text;
-
-  @input
-  exerciseDescriptionText: Text;
-  @ui.group_end
+  // Wired by SceneWiring
+  screenshotImage: Image | null = null;
+  exerciseTitleText: Text | null = null;
+  exerciseDescriptionText: Text | null = null;
 
   private selectedExerciseId: string = "";
 
@@ -32,9 +27,6 @@ export class ConfirmPanelController extends BaseScriptComponent {
     print("[ConfirmPanelController] Initializing");
   }
 
-  /**
-   * Set the selected exercise and display its details.
-   */
   setSelectedExercise(exerciseId: string): void {
     this.selectedExerciseId = exerciseId;
 
@@ -47,27 +39,19 @@ export class ConfirmPanelController extends BaseScriptComponent {
 
     print("[ConfirmPanelController] Displaying exercise: " + exercise.title);
 
-    // Update title
     if (this.exerciseTitleText) {
       this.exerciseTitleText.text = exercise.title;
     }
 
-    // Update description
     if (this.exerciseDescriptionText) {
       this.exerciseDescriptionText.text = exercise.description;
     }
 
-    // Screenshot: placeholder for MVP
-    // Phase 2: load exercise-specific image
     if (this.screenshotImage) {
       print("[ConfirmPanelController] Screenshot placeholder (to be filled by user)");
-      // screenshotImage.texture = some_texture; // Phase 2
     }
   }
 
-  /**
-   * Get selected exercise ID.
-   */
   getSelectedExerciseId(): string {
     return this.selectedExerciseId;
   }

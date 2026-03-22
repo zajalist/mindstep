@@ -26,11 +26,7 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
-    activityCardPrefab: false
-    activityScrollView: false
-    gridContainer: false
-    itemSpacing: false
-    totalActivitiesCount: false
+    {}
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -40,19 +36,10 @@
   Attachments:
     []
   DefaultScriptInputs:
-    - activityScrollView: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
-      activityCardPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
-      gridContainer: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
-      totalActivitiesCount: !<float> 10.000000
-      itemSpacing: 5.500000
+    -
+      {}
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"group_start", "label":"Activity Browse Setup"}'
-    - '// @input SceneObject activityScrollView {"hint":"ScrollView container for activity cards"}'
-    - '// @input Asset.ObjectPrefab activityCardPrefab {"hint":"Prefab to instantiate for each activity"}'
-    - '// @input SceneObject gridContainer {"hint":"Parent container for grid layout"}'
-    - '// @input float totalActivitiesCount = 10 {"hint":"Total activities to show (2 real + N skeleton)"}'
-    - '// @input float itemSpacing = 5.5 {"hint":"Vertical spacing between cards in cm"}'
-    - '// @ui {"widget":"group_end"}'
+    []

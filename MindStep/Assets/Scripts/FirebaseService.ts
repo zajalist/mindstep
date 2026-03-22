@@ -1,8 +1,10 @@
 /**
  * FirebaseService.ts
- * Handles all REST API calls to Firestore.
- * Uses the global RemoteServiceModule for HTTP requests.
+ * Handles all REST API calls to Firestore via Lens Studio's RemoteServiceModule.
  */
+
+//@ts-ignore
+const remoteServiceModule: RemoteServiceModule = require("LensStudio:RemoteServiceModule");
 
 export interface FirebaseAssignment {
   id: string;
@@ -25,126 +27,155 @@ export interface FirebaseExercise {
 
 export class FirebaseService {
   private static readonly PROJECT_ID = "mindstep-f5149";
-  private static readonly API_URL =
+  private static readonly BASE_URL =
     "https://firestore.googleapis.com/v1/projects/" +
     FirebaseService.PROJECT_ID +
     "/databases/(default)/documents";
 
+  // ---------- HTTP helpers ----------
+
+  private static httpGet(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const request = RemoteServiceHttpRequest.create();
+      request.url = url;
+      request.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
+      request.setHeader("Content-Type", "application/json");
+      remoteServiceModule.performHttpRequest(request, (response) => {
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          try {
+            resolve(JSON.parse(response.body));
+          } catch (e) {
+            reject(new Error("JSON parse error: " + e));
+          }
+        } else {
+          reject(new Error("HTTP " + response.statusCode + ": " + response.body));
+        }
+      });
+    });
+  }
+
+  private static httpPatch(url: string, body: object): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const request = RemoteServiceHttpRequest.create();
+      request.url = url;
+      request.method = RemoteServiceHttpRequest.HttpRequestMethod.Patch;
+      request.setHeader("Content-Type", "application/json");
+      request.body = JSON.stringify(body);
+      remoteServiceModule.performHttpRequest(request, (response) => {
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          try { resolve(JSON.parse(response.body)); } catch (e) { resolve({}); }
+        } else {
+          reject(new Error("HTTP " + response.statusCode + ": " + response.body));
+        }
+      });
+    });
+  }
+
+  // ---------- Assignments ----------
+
   /**
-   * Fetch all assignments for a patient.
-   * Returns a promise that resolves to an array of assignments.
+   * Fetch all assignments (filters client-side by patientId).
+   * Guest users (patient_001) see all assignments in the collection.
    */
-  static async fetchAssignments(
-    patientId: string
-  ): Promise<FirebaseAssignment[]> {
-    const url =
-      FirebaseService.API_URL +
-      "/assignments?pageSize=100";
-
+  static async fetchAssignments(patientId: string): Promise<FirebaseAssignment[]> {
+    const url = FirebaseService.BASE_URL + "/assignments?pageSize=100";
+    print("[FirebaseService] Fetching assignments for: " + patientId);
     try {
-      print("[FirebaseService] Fetching assignments for patient: " + patientId);
-
-      // Note: This is a simplified REST call.
-      // In production, use proper filtering with ?where clauses or implement on backend.
-      // For MVP, we'll fetch all and filter client-side.
-
-      const assignments: FirebaseAssignment[] = [];
-
-      // Placeholder response parsing (Phase 2: implement actual HTTP call)
-      print("[FirebaseService] Fetched " + assignments.length + " assignments");
-
-      return assignments;
-    } catch (error) {
-      print("[FirebaseService] Error fetching assignments: " + error);
+      const data = await FirebaseService.httpGet(url);
+      const docs: any[] = data.documents || [];
+      const all = docs.map((doc) => FirebaseService.parseAssignment(doc));
+      const filtered = all.filter(
+        (a) => a.patientId === patientId || patientId === "patient_001"
+      );
+      print("[FirebaseService] Got " + filtered.length + " assignments");
+      return filtered;
+    } catch (err) {
+      print("[FirebaseService] fetchAssignments error: " + err);
       return [];
     }
   }
 
   /**
-   * Mark an assignment as partially complete (increment reps).
+   * Increment completedReps for an assignment (fetch current, then PATCH +1).
    */
   static async markAssignmentComplete(assignmentId: string): Promise<boolean> {
-    const url =
-      FirebaseService.API_URL + "/assignments/" + assignmentId;
-
+    print("[FirebaseService] Marking complete: " + assignmentId);
     try {
-      print("[FirebaseService] Marking assignment complete: " + assignmentId);
-
-      // PATCH request to increment completedReps
-      // Body:
-      // {
-      //   "fields": {
-      //     "completedReps": { "integerValue": "1" },
-      //     "lastCompletedAt": { "timestampValue": "2025-03-21T10:05:00Z" }
-      //   }
-      // }
-
-      print("[FirebaseService] Assignment updated");
+      const docUrl = FirebaseService.BASE_URL + "/assignments/" + assignmentId;
+      const doc = await FirebaseService.httpGet(docUrl);
+      const currentReps = parseInt(doc.fields?.completedReps?.integerValue || "0");
+      const newReps = currentReps + 1;
+      const now = new Date().toISOString();
+      const patchUrl =
+        docUrl +
+        "?updateMask.fieldPaths=completedReps&updateMask.fieldPaths=lastCompletedAt";
+      await FirebaseService.httpPatch(patchUrl, {
+        fields: {
+          completedReps: { integerValue: String(newReps) },
+          lastCompletedAt: { timestampValue: now }
+        }
+      });
+      print("[FirebaseService] Updated completedReps to " + newReps);
       return true;
-    } catch (error) {
-      print("[FirebaseService] Error updating assignment: " + error);
+    } catch (err) {
+      print("[FirebaseService] markAssignmentComplete error: " + err);
       return false;
     }
   }
 
-  /**
-   * Fetch a single exercise (metadata only).
-   * Note: Exercise definitions are typically stored locally (ExerciseData.ts).
-   * This is for fetching extended data from Firestore (Phase 2+).
-   */
+  /** Fetch a single exercise by ID. */
   static async fetchExercise(exerciseId: string): Promise<FirebaseExercise | null> {
-    const url =
-      FirebaseService.API_URL + "/exercises/" + exerciseId;
-
+    const url = FirebaseService.BASE_URL + "/exercises/" + exerciseId;
+    print("[FirebaseService] Fetching exercise: " + exerciseId);
     try {
-      print("[FirebaseService] Fetching exercise: " + exerciseId);
-
-      // GET request
-      // Response: { "name": "...", "fields": { "title": {...}, ... } }
-
-      print("[FirebaseService] Exercise fetched");
-      return null; // Placeholder
-    } catch (error) {
-      print("[FirebaseService] Error fetching exercise: " + error);
+      const doc = await FirebaseService.httpGet(url);
+      return FirebaseService.parseExercise(doc);
+    } catch (err) {
+      print("[FirebaseService] fetchExercise error: " + err);
       return null;
     }
   }
 
-  /**
-   * Fetch all exercises (for therapist assignment interface, Phase 2+).
-   */
+  /** Fetch all exercises. */
   static async fetchAllExercises(): Promise<FirebaseExercise[]> {
-    const url = FirebaseService.API_URL + "/exercises?pageSize=100";
-
+    const url = FirebaseService.BASE_URL + "/exercises?pageSize=100";
+    print("[FirebaseService] Fetching all exercises");
     try {
-      print("[FirebaseService] Fetching all exercises");
-
-      const exercises: FirebaseExercise[] = [];
-
-      print("[FirebaseService] Fetched " + exercises.length + " exercises");
-      return exercises;
-    } catch (error) {
-      print("[FirebaseService] Error fetching exercises: " + error);
+      const data = await FirebaseService.httpGet(url);
+      const docs: any[] = data.documents || [];
+      return docs.map((doc) => FirebaseService.parseExercise(doc));
+    } catch (err) {
+      print("[FirebaseService] fetchAllExercises error: " + err);
       return [];
     }
   }
 
-  /**
-   * Helper: Parse Firestore REST response to assignment object.
-   * (Used when implementing actual HTTP calls in Phase 2)
-   */
-  private static parseAssignmentResponse(doc: any): FirebaseAssignment {
-    const fields = doc.fields;
+  // ---------- Parsers ----------
 
+  private static parseAssignment(doc: any): FirebaseAssignment {
+    const f = doc.fields || {};
     return {
-      id: doc.name.split("/").pop(),
-      patientId: fields.patientId?.stringValue || "",
-      exerciseId: fields.exerciseId?.stringValue || "",
-      reps: parseInt(fields.reps?.integerValue || "0"),
-      completedReps: parseInt(fields.completedReps?.integerValue || "0"),
-      doctorNotes: fields.doctorNotes?.stringValue || "",
-      assignedDate: fields.assignedDate?.timestampValue || "",
-      isCompleted: fields.isCompleted?.booleanValue || false
+      id: (doc.name as string).split("/").pop() || "",
+      patientId: f.patientId?.stringValue || "",
+      exerciseId: f.exerciseId?.stringValue || "",
+      reps: parseInt(f.reps?.integerValue || "1"),
+      completedReps: parseInt(f.completedReps?.integerValue || "0"),
+      doctorNotes: f.doctorNotes?.stringValue || "",
+      assignedDate: f.assignedDate?.timestampValue || "",
+      isCompleted: f.isCompleted?.booleanValue || false
+    };
+  }
+
+  private static parseExercise(doc: any): FirebaseExercise {
+    const f = doc.fields || {};
+    const stepsArr: string[] =
+      f.steps?.arrayValue?.values?.map((v: any) => v.stringValue || "") || [];
+    return {
+      id: (doc.name as string).split("/").pop() || "",
+      title: f.title?.stringValue || "",
+      description: f.description?.stringValue || "",
+      difficulty: f.difficulty?.stringValue || "easy",
+      steps: stepsArr
     };
   }
 }

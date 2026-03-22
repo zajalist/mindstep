@@ -1,9 +1,10 @@
 /**
  * ActivityCardItem.ts
  * Represents a single activity card in the Browse grid.
- * Interactive (first 2), or skeleton placeholder (rest).
+ * Interactive (real exercises) or skeleton placeholder.
  */
 
+// @ts-ignore – SIK module resolved by Lens Studio's package system at runtime
 import { Interactable } from "SpectaclesInteractionKit.lspkg/Components/Interaction/Interactable/Interactable";
 import { ExerciseData } from "./ExerciseData";
 import { MindStepUIManager } from "./MindStepUIManager";
@@ -26,7 +27,7 @@ export class ActivityCardItem extends BaseScriptComponent {
 
   private exerciseId: string = "";
   private isSkeleton: boolean = false;
-  private uiManager: MindStepUIManager | null = null;
+  private listenerAttached: boolean = false;
 
   onAwake() {
     this.createEvent("OnStartEvent").bind(() => {
@@ -36,81 +37,45 @@ export class ActivityCardItem extends BaseScriptComponent {
 
   private initialize(): void {
     print("[ActivityCardItem] Initializing");
-
-    // Find UI manager in scene
-    // (Would be set by scene search or dependency injection in full implementation)
   }
 
   /**
-   * Set the exercise data for this card.
+   * Set exercise data for this card. Called by ActivityBrowseController after instantiation.
    */
   setExercise(exerciseId: string, title: string, isSkeleton: boolean): void {
     this.exerciseId = exerciseId;
     this.isSkeleton = isSkeleton;
 
-    // Update UI
-    if (this.titleText) {
-      this.titleText.text = title;
-    }
+    if (this.titleText) this.titleText.text = title;
 
     if (isSkeleton) {
-      // Skeleton styling
-      if (this.difficultyText) {
-        this.difficultyText.text = "Not yet available";
-      }
-
-      // Disable interactable for skeleton
-      if (this.cardBacking) {
-        this.cardBacking.sceneObject.enabled = false;
-      }
-
-      // Apply grayed-out style (Phase 2: implement visual)
-      print("[ActivityCardItem] Set as skeleton: " + title);
+      if (this.difficultyText) this.difficultyText.text = "Coming soon";
+      if (this.cardBacking) this.cardBacking.enabled = false;
     } else {
-      // Real exercise: show difficulty
       const exercise = ExerciseData.getExercise(exerciseId);
       if (exercise && this.difficultyText) {
-        this.difficultyText.text = "Difficulty: " + exercise.difficulty;
+        this.difficultyText.text = exercise.difficulty.charAt(0).toUpperCase() + exercise.difficulty.slice(1);
       }
 
-      // Enable interactable
-      if (this.cardBacking) {
-        this.cardBacking.onTriggerEnd.add(() => {
-          this.onCardSelected();
-        });
+      if (this.cardBacking && !this.listenerAttached) {
+        this.cardBacking.onTriggerEnd.add(() => this.onCardSelected());
+        this.listenerAttached = true;
       }
-
-      print("[ActivityCardItem] Set as real exercise: " + title);
     }
   }
 
-  /**
-   * Called when card is selected (trigger on backing Interactable).
-   */
   private onCardSelected(): void {
-    if (this.isSkeleton) {
-      print("[ActivityCardItem] Skeleton card clicked (no action)");
-      return;
-    }
+    if (this.isSkeleton) return;
+    print("[ActivityCardItem] Selected: " + this.exerciseId);
 
-    print("[ActivityCardItem] Exercise selected: " + this.exerciseId);
-
-    // Find and notify MindStepUIManager
-    // In a real implementation, this would use dependency injection
-    // For now, we'll search the scene
-    const rootScene = this.getSceneObject().getParent();
-    if (rootScene) {
-      const uiManager = rootScene.getComponent(<any>"MindStepUIManager") as any as MindStepUIManager;
-      if (uiManager) {
-        uiManager.transitionToConfirm(this.exerciseId);
-      }
+    // Use singleton – works even from dynamically-instantiated prefabs
+    const ui = MindStepUIManager.getInstance();
+    if (ui) {
+      ui.transitionToConfirm(this.exerciseId);
+    } else {
+      print("[ActivityCardItem] Warning: MindStepUIManager not found");
     }
   }
 
-  /**
-   * Get exercise ID.
-   */
-  getExerciseId(): string {
-    return this.exerciseId;
-  }
+  getExerciseId(): string { return this.exerciseId; }
 }

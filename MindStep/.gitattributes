@@ -1,13 +1,20 @@
 # Shipped by Lens Studio
 
 # The lines below are automatically generated and updated by Lens Studio.
-# Modified: LFS disabled for GitHub free tier compatibility
-# To re-enable LFS, change Assets/**/* back to: filter=lfs diff=lfs merge=lfs -text
+# Please do not modify them manually, as changes will be overwritten each time!
+# If you want to make changes to this file, please put them either above or below this section.
 
 *.esproj text linguist-language=yaml
 
-Assets/**/* text -filter=lfs -diff=lfs -merge=lfs
-Packages/**/* text -filter=lfs -diff=lfs -merge=lfs
+Assets/**/* filter=lfs diff=lfs merge=lfs -text
+Packages/**/* filter=lfs diff=lfs merge=lfs -text
+
+Assets/**/*.mesh !filter !diff !merge text
+Assets/**/*.png !filter !diff !merge text  
+Assets/**/*.jpg !filter !diff !merge text
+Assets/**/*.ttf !filter !diff !merge text
+Assets/**/*.hdr !filter !diff !merge text
+Assets/**/*.lspkg !filter !diff !merge text
 
 Assets/**/*.css !filter !diff !merge text
 Packages/**/*.css !filter !diff !merge text

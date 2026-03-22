@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/c1afbc40-dcb0-ab43-4928-44f1973386c5>
+  ImportedAssetIds:
+    JavaScriptAsset: !<reference> 69c97994-5bd4-49aa-a541-a869497bbdb0
+  ImporterName: JavaScriptAssetImporter
+  PrimaryAsset: !<reference> 69c97994-5bd4-49aa-a541-a869497bbdb0
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    AssetLibraryId: 3e039xrw5FBCwfjVdIFan0
+  AssetDataMap:
+    JavaScriptAsset: !<own> 5ae47063-5509-48cc-bd56-b0818019a9ba
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ScriptAssetData/5ae47063-5509-48cc-bd56-b0818019a9ba>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 1
+  ComponentUid: 8799890c-5a42-46a8-bb9e-9d41fa689f2b
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    horizontalJumpHeight: false
+    horizontalTransitionDuration: false
+    positionCenterX: false
+    positionLeftX: false
+    positionRightX: false
+    targetObject: false
+    verticalJumpDuration: false
+    verticalJumpHeight: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - targetObject: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      positionLeftX: !<float> -5.000000
+      positionCenterX: !<float> 0.000000
+      positionRightX: !<float> 5.000000
+      horizontalTransitionDuration: 0.500000
+      horizontalJumpHeight: !<float> 2.000000
+      verticalJumpHeight: !<float> 2.000000
+      verticalJumpDuration: 0.500000
+  ScriptTypes:
+    -
+      {}
