@@ -1,0 +1,55 @@
+- !<AssetImportMetadata/34396197-52ae-4d68-8818-3afd3ebe5f0c>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 039c35f4-fce4-4511-9804-a92a61ac63f6
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 039c35f4-fce4-4511-9804-a92a61ac63f6
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 1e3a7245-182c-4329-a2a5-31be0c116bbe
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/1e3a7245-182c-4329-a2a5-31be0c116bbe>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 7a05df01-38b8-4242-8c79-48f4209953fb
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    cardBacking: false
+    difficultyText: false
+    iconImage: false
+    titleText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - titleText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      difficultyText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      cardBacking: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+      iconImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Card UI"}'
+    - // @input Component.Text titleText
+    - // @input Component.Text difficultyText
+    - // @input AssignableType cardBacking
+    - // @input Component.Image iconImage
+    - '// @ui {"widget":"group_end"}'

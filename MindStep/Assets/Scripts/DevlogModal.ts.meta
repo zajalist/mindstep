@@ -1,0 +1,55 @@
+- !<AssetImportMetadata/29316ec4-9ed6-4a94-8aab-4cb96d9e472d>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 13ca2f8e-92de-4663-ad58-ecbd29c60e4c
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 13ca2f8e-92de-4663-ad58-ecbd29c60e4c
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> fdfe31d8-2da5-43af-80f0-0f2f562ed0e2
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/fdfe31d8-2da5-43af-80f0-0f2f562ed0e2>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: d1cf21b9-1563-41cf-96ab-ad1806f6d8f2
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    changelogScrollView: false
+    closeButton: false
+    modalRoot: false
+    versionText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - modalRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      versionText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      changelogScrollView: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      closeButton: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Devlog UI"}'
+    - // @input SceneObject modalRoot
+    - // @input Component.Text versionText
+    - // @input SceneObject changelogScrollView
+    - // @input AssignableType closeButton
+    - '// @ui {"widget":"group_end"}'

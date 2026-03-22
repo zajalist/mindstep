@@ -1,0 +1,13 @@
+{
+    "id": 20,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"message\":\"Property scriptAsset set to {}\",\"objectUUID\":\"3c2149e4-401f-44ef-9b1a-392ffc493509\",\"propertyPath\":\"scriptAsset\"}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

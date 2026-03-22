@@ -1,0 +1,55 @@
+- !<AssetImportMetadata/8831bf12-fc0d-4bae-ac53-140b89717d97>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 2afb63ac-5a68-4a4d-9b46-f677f7ec9a3d
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 2afb63ac-5a68-4a4d-9b46-f677f7ec9a3d
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 6a0b88fc-cde3-4f1e-aede-86bb25579495
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/6a0b88fc-cde3-4f1e-aede-86bb25579495>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 1fba0c5b-3656-4e8c-aa2c-8d0dda6e3ce9
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    itemSpacing: false
+    statusText: false
+    taskItemPrefab: false
+    taskScrollView: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - taskScrollView: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      taskItemPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      statusText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      itemSpacing: 5.500000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Task List Setup"}'
+    - '// @input SceneObject taskScrollView {"hint":"ScrollView container for task items"}'
+    - '// @input Asset.ObjectPrefab taskItemPrefab {"hint":"Prefab to instantiate for each task"}'
+    - '// @input Component.Text statusText {"hint":"Text to show loading state"}'
+    - '// @input float itemSpacing = 5.5 {"hint":"Vertical spacing between task items in cm"}'
+    - '// @ui {"widget":"group_end"}'

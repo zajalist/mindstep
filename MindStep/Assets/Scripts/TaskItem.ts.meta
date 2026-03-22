@@ -1,0 +1,55 @@
+- !<AssetImportMetadata/009cf89f-185a-48e5-987f-e64fdcfb308a>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> e0e09294-0072-4337-9987-1b5b22cfb0a6
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> e0e09294-0072-4337-9987-1b5b22cfb0a6
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 97448d79-d406-4b08-890d-2f7de3b37da6
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/97448d79-d406-4b08-890d-2f7de3b37da6>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 26066770-6f82-4e0a-8cb5-3ef8b2f16673
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    completeToggle: false
+    notesText: false
+    repsText: false
+    titleText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - titleText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      repsText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      notesText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      completeToggle: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Task Item UI"}'
+    - // @input Component.Text titleText
+    - // @input Component.Text repsText
+    - // @input Component.Text notesText
+    - // @input AssignableType completeToggle
+    - '// @ui {"widget":"group_end"}'

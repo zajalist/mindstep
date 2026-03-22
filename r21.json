@@ -1,0 +1,13 @@
+{
+    "id": 21,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "Tool execution failed: Invalid or missing 'objectUUID'.",
+                "type": "text"
+            }
+        ],
+        "isError": true
+    }
+}

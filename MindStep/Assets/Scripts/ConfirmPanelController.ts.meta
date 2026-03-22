@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/6b2ba2fa-ed93-47f9-9109-54b774386799>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 90647a8f-7ebb-4bf0-8d81-eb636b0dd52e
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 90647a8f-7ebb-4bf0-8d81-eb636b0dd52e
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 5ce67e06-9f62-4ed4-abbe-a8ff86344a96
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/5ce67e06-9f62-4ed4-abbe-a8ff86344a96>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: cabcd3b8-a2fb-4014-96ff-7767daf6a7ae
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    exerciseDescriptionText: false
+    exerciseTitleText: false
+    screenshotImage: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - screenshotImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
+      exerciseTitleText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      exerciseDescriptionText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Confirm Panel UI"}'
+    - '// @input Component.Image screenshotImage {"hint":"Placeholder for exercise screenshot"}'
+    - // @input Component.Text exerciseTitleText
+    - // @input Component.Text exerciseDescriptionText
+    - '// @ui {"widget":"group_end"}'

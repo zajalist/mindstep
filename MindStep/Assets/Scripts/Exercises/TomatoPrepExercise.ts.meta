@@ -1,0 +1,66 @@
+- !<AssetImportMetadata/9d6c9888-ebee-432a-b1a0-bfe7ac2630ed>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 0b42a710-1da3-4343-9ece-ac48846c9ab3
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 0b42a710-1da3-4343-9ece-ac48846c9ab3
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> caf37344-65c9-4091-a2e4-15038916303a
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/caf37344-65c9-4091-a2e4-15038916303a>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 056ffa9c-825a-46ee-9cc0-674fee7ce45e
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    countertop: false
+    exitButton: false
+    knife: false
+    progressDotsImage: false
+    sdfSlicerPlane: false
+    stepText: false
+    tomato: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - stepText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      progressDotsImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
+      exitButton: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+      tomato: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
+      knife: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
+      countertop: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
+      sdfSlicerPlane: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Exercise HUD"}'
+    - // @input Component.Text stepText
+    - // @input Component.Image progressDotsImage
+    - // @input AssignableType exitButton
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Tomato Prep Objects"}'
+    - // @input Component.RenderMeshVisual tomato
+    - // @input Component.RenderMeshVisual knife
+    - // @input Component.RenderMeshVisual countertop
+    - // @input Component.RenderMeshVisual sdfSlicerPlane
+    - '// @ui {"widget":"group_end"}'

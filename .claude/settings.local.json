@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l D:/MindStep/QUICK_START.md D:/MindStep/IMPLEMENTATION_SUMMARY.md D:/MindStep/docs/*.md D:/MindStep/MindStep/Assets/Scripts/*.ts D:/MindStep/MindStep/Assets/Scripts/Exercises/*.ts)",
+      "Bash(python:*)",
+      "Bash(xxd \"D:/MindStep/mcp.json\")",
+      "WebFetch(domain:developers.snap.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(find D:/MindStep -name editor.d.ts -o -name *.esproj)",
+      "Bash(curl:*)",
+      "Bash(SIDENAV_ID=\"756085bd-6b4f-4552-8067-83f064128780\" __NEW_LINE_8466715aa3861fa7__ for NAME in \"MyTasksTab\" \"BrowseTab\" \"ProfileTab\")",
+      "Bash(do curl:*)",
+      "Bash(find D:/MindStep/MindStep -path */ToggleButton*.ts ! -path */cache* ! -path */Cache*)"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "id": 43,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"message\":\"Successfully created new scene object 'BackButton'.\",\"name\":\"BackButton\",\"objectUUID\":\"4b3a72a6-5898-4d7a-9886-555bb3fb21d1\",\"parentUUID\":\"91c0b14f-cba8-4679-8d77-e63e4f511d1e\"}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

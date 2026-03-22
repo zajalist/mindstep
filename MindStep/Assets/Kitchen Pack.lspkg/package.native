@@ -1,0 +1,37 @@
+- !<NativePackageDescriptor/cfc5a64b-6166-491b-b955-8843cf53ad35>
+  PackagePath: ""
+  StudioVersion:
+    major: 5
+    minor: 15
+    patch: 4
+    build: 26022322
+    type: Unset
+    buildFlavor: ""
+    timestamp: 0
+    commit: ""
+  Description: "Kitchen Pack Bitmoji Kitchen Pack includes 20 different 3D models with Bitmoji's unique style: • utensils • spoon wooden • spoon • spatula • shaker spice • quarantine bowl • plate cover • plate • matchstick • ladle • knife sharpener • knife chopping • jar • disinfectant spray • dishes stack • coffee pot • coffee maker • chopsticks • carving knife • bowl Click here to learn on Place Your Object in World Click here to learn more about Tracking Modes"
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  VersionMajor: 1
+  VersionMinor: 0
+  VersionPatch: 0
+  UpdateCheckpoint: 76
+  ExportUid: 77eb4231-8519-40d9-b621-b8c3bb9632cc
+  ComponentUid: c1ea9f94-9144-4d7b-b946-dab2b07a1c33
+  PackagePolicy: CanBeUnpackedTransparent
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  Instantiable: !<reference> 00000000-0000-0000-0000-000000000000
+  AssetLibraryDependencyStructure: !<AssetLibraryDependencyStructure>
+    Name: ""
+    AssetId: ""
+    Hash: ""
+    Version:
+      major: 0
+      minor: 0
+      patch: 0
+      build: 0

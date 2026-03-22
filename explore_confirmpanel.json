@@ -1,0 +1,13 @@
+{
+    "id": 3,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"message\":\"Successfully found 1 scene object(s) with name 'ConfirmPanel'.\",\"objects\":[{\"children\":[],\"components\":[],\"enabled\":false,\"id\":\"21ae5097-38e4-4eb6-9517-2bdec91f0dd6\",\"layers\":{\"type\":\"layer_set_mask\",\"value\":1},\"localTransform\":{\"position\":{\"x\":0,\"y\":0,\"z\":0},\"rotation\":{\"x\":0,\"y\":0,\"z\":0},\"scale\":{\"x\":1,\"y\":1,\"z\":1}},\"name\":\"ConfirmPanel\",\"type\":\"SceneObject\"}]}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

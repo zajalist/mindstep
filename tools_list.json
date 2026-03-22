@@ -1,0 +1,1713 @@
+{
+    "id": 100,
+    "jsonrpc": "2.0",
+    "result": {
+        "tools": [
+            {
+                "description": "Triggers TypeScript compile by making a small asset change, collects logs, and reports success or errors.",
+                "icon": "$(wrench)",
+                "inputSchema": {
+                    "properties": {
+                        "timeoutMs": {
+                            "default": 30000,
+                            "modelDescription": "Maximum compilation time in milliseconds to wait for compilation to succeed or fail, before timing out.",
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "name": "CompileWithLogsTool",
+                "tags": [
+                    "compile",
+                    "tsc",
+                    "typescript",
+                    "build"
+                ],
+                "title": "Run TypeScript Compile (with logs)"
+            },
+            {
+                "description": "Creates a new asset of a specific type from a preset in Lens Studio. Use GetPresetRegistryTool tool for the list of available Asset presets. It can be used to create different types of assets like specific Meshes, Scripts, Textures, Materials, etc.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "folderPath": {
+                            "modelDescription": "Path to the folder where the asset should be created (defaults to root of Assets folder if not provided).",
+                            "type": "string"
+                        },
+                        "name": {
+                            "modelDescription": "Name for the new asset.",
+                            "type": "string"
+                        },
+                        "preset": {
+                            "modelDescription": "The name of asset preset to create. This can be obtained from the Lens Studio preset registry.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "preset",
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "CreateAssetFromPresetTool",
+                "tags": [
+                    "create",
+                    "asset",
+                    "preset",
+                    "add asset",
+                    "new asset",
+                    "create from preset",
+                    "asset from preset",
+                    "template"
+                ],
+                "title": "Create Lens Studio Asset From Preset"
+            },
+            {
+                "description": "Creates a new component from a preset on a scene object in Lens Studio. Use GetPresetRegistryTool tool for the list of available Component presets.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "objectUUID": {
+                            "modelDescription": "UUID of the scene object to add the component to. If not provided, a new object will be created.",
+                            "type": "string"
+                        },
+                        "preset": {
+                            "modelDescription": "The name of the preset to use for the component. Should be present in lens studio preset registry",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID",
+                        "preset"
+                    ],
+                    "type": "object"
+                },
+                "name": "CreateComponentFromPresetTool",
+                "tags": [
+                    "create",
+                    "component",
+                    "preset",
+                    "add component",
+                    "new component",
+                    "create from preset",
+                    "component from preset",
+                    "template"
+                ],
+                "title": "Create Lens Studio Component From Preset"
+            },
+            {
+                "description": "Creates a new \"default\" asset in Lens Studio. This is useful for creating new assets that you can then modify using the 'SetLensStudioProperty' tool, but for an asset to be functional \"from the get-go\", the `create_asset_from_preset` tool is to be preferred.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetType": {
+                            "enum": [
+                                "RenderTarget",
+                                "ObjectPrefab",
+                                "Material",
+                                "FileTexture",
+                                "FileAudioTrack",
+                                "AnimatedTexture"
+                            ],
+                            "modelDescription": "The type of asset to create.",
+                            "type": "string"
+                        },
+                        "folderPath": {
+                            "modelDescription": "Path to the folder where the asset should be created (defaults to assets directory root if not provided).",
+                            "type": "string"
+                        },
+                        "name": {
+                            "modelDescription": "Name for the new asset.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetType",
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "CreateLensStudioAsset",
+                "tags": [
+                    "create",
+                    "asset",
+                    "new asset",
+                    "add asset",
+                    "make asset"
+                ],
+                "title": "Create Lens Studio Asset"
+            },
+            {
+                "description": "Creates a new component on a scene object in Lens Studio. After it's been created, it returns back an object containing all of the properties on the newly created component, allowing you to set them to appropriate values using the SetProperty tool. Note that this tool creates raw components that need to be configured further using the SetProperty tool. Some components can be added in more common way from a preset, use the CreateComponentFromPresetTool this corresponds to the way objects are added to scene when users clicks on the Add Component button in the Lens Studio inspector panel.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "componentType": {
+                            "enum": [
+                                "AnimationPlayer",
+                                "AudioComponent",
+                                "AudioEffectComponent",
+                                "AudioListenerComponent",
+                                "BodyComponent",
+                                "Camera",
+                                "Canvas",
+                                "ClothVisual",
+                                "ColliderComponent",
+                                "ColocatedTrackingComponent",
+                                "ConstraintComponent",
+                                "CustomLocationGroupComponent",
+                                "DeviceLocationTrackingComponent",
+                                "DeviceTracking",
+                                "EyeColorVisual",
+                                "FaceInsetVisual",
+                                "FaceMaskVisual",
+                                "FaceStretchVisual",
+                                "GaussianSplattingVisual",
+                                "HairVisual",
+                                "Head",
+                                "Image",
+                                "InteractionComponent",
+                                "LightSource",
+                                "LiquifyVisual",
+                                "LocatedAtComponent",
+                                "LookAtComponent",
+                                "MLComponent",
+                                "ManipulateComponent",
+                                "MarkerTrackingComponent",
+                                "MaskingComponent",
+                                "ObjectTracking",
+                                "ObjectTracking3D",
+                                "PinToMeshComponent",
+                                "PostEffectVisual",
+                                "RectangleSetter",
+                                "RenderMeshVisual",
+                                "RetouchVisual",
+                                "ScreenRegionComponent",
+                                "ScreenTransform",
+                                "ScriptComponent",
+                                "Skin",
+                                "Text",
+                                "Text3D",
+                                "VFXComponent",
+                                "VertexCache",
+                                "WorldComponent"
+                            ],
+                            "modelDescription": "The fully qualified type of component to add.",
+                            "type": "string"
+                        },
+                        "index": {
+                            "modelDescription": "Optional position in the components array where the new component should be inserted.",
+                            "type": "number"
+                        },
+                        "objectUUID": {
+                            "modelDescription": "UUID of the scene object to add the component to. This uniquely identifies the target object in the scene.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID",
+                        "componentType"
+                    ],
+                    "type": "object"
+                },
+                "name": "CreateLensStudioComponent",
+                "tags": [
+                    "create",
+                    "add",
+                    "new",
+                    "component",
+                    "light",
+                    "camera",
+                    "visual",
+                    "behavior",
+                    "material",
+                    "mesh",
+                    "add component",
+                    "create component"
+                ],
+                "title": "Create Lens Studio Component"
+            },
+            {
+                "description": "Creates a new scene object in Lens Studio with the specified name and optional parent.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "name": {
+                            "modelDescription": "Name for the new scene object.",
+                            "type": "string"
+                        },
+                        "parentUUID": {
+                            "modelDescription": "UUID of the parent object (defaults to scene root if not provided).",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "CreateLensStudioSceneObject",
+                "tags": [
+                    "create",
+                    "add",
+                    "new",
+                    "scene object",
+                    "scene node",
+                    "new object",
+                    "add object"
+                ],
+                "title": "Create Lens Studio Scene Object"
+            },
+            {
+                "description": "Creates a prefab asset from an existing scene object in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "destinationPath": {
+                            "modelDescription": "The path where the prefab should be saved. (Don't include extension)",
+                            "type": "string"
+                        },
+                        "objectUUID": {
+                            "modelDescription": "The ID of the scene object to convert to a prefab.",
+                            "type": "string"
+                        },
+                        "prefabName": {
+                            "modelDescription": "Optional name for the prefab. If not provided, the scene object's name will be used.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID",
+                        "destinationPath"
+                    ],
+                    "type": "object"
+                },
+                "name": "CreatePrefabFromSceneObject",
+                "tags": [
+                    "create",
+                    "prefab",
+                    "convert",
+                    "scene object",
+                    "reusable",
+                    "template",
+                    "asset"
+                ],
+                "title": "Create Prefab From Scene Object"
+            },
+            {
+                "description": "Creates a specific predefined scene object from a preset in Lens Studio. Make sure to use GetPresetRegistryTool tool for the list of available **SceneObject** presets. Scene Object preset registry includes all the predefined objects user can add to the scene and are a preferred way of adding objects and components to the scene.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "name": {
+                            "modelDescription": "Name for the new scene object.",
+                            "type": "string"
+                        },
+                        "parentUUID": {
+                            "modelDescription": "ID of the parent object (defaults to scene root if not provided).",
+                            "type": "string"
+                        },
+                        "preset": {
+                            "modelDescription": "The name of the preset to use for the scene object. Can be obtained from the lens studio preset registry.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "preset",
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "CreateSceneObjectFromPresetTool",
+                "tags": [
+                    "create",
+                    "scene object",
+                    "preset",
+                    "add object",
+                    "new object",
+                    "create from preset",
+                    "object from preset",
+                    "template"
+                ],
+                "title": "Create Lens Studio Scene Object From Preset"
+            },
+            {
+                "description": "Deletes an asset from Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetUUID": {
+                            "modelDescription": "The ID of the asset to delete.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "DeleteLensStudioAsset",
+                "tags": [
+                    "delete",
+                    "remove",
+                    "asset",
+                    "delete asset",
+                    "remove asset"
+                ],
+                "title": "Delete Lens Studio Asset"
+            },
+            {
+                "description": "Deletes a component from a scene object in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "componentUUID": {
+                            "modelDescription": "UUID of the component to delete.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "componentUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "DeleteLensStudioComponent",
+                "tags": [
+                    "delete",
+                    "remove",
+                    "component",
+                    "delete component",
+                    "remove component"
+                ],
+                "title": "Delete Lens Studio Component"
+            },
+            {
+                "description": "Deletes a scene object from the Lens Studio scene hierarchy.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "objectUUID": {
+                            "modelDescription": "ID of the scene object to delete.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "DeleteLensStudioSceneObject",
+                "tags": [
+                    "delete",
+                    "remove",
+                    "scene object",
+                    "delete object",
+                    "remove object"
+                ],
+                "title": "Delete Lens Studio Scene Object"
+            },
+            {
+                "description": "Duplicates an asset in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetUUID": {
+                            "modelDescription": "The UUID of the asset to duplicate.",
+                            "type": "string"
+                        },
+                        "destinationPath": {
+                            "modelDescription": "Optional folder path for the duplicated asset.",
+                            "type": "string"
+                        },
+                        "newName": {
+                            "modelDescription": "Optional name for the duplicated asset.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "DuplicateLensStudioAsset",
+                "tags": [
+                    "duplicate",
+                    "copy",
+                    "clone",
+                    "asset",
+                    "duplicate asset",
+                    "copy asset"
+                ],
+                "title": "Duplicate Lens Studio Asset"
+            },
+            {
+                "description": "Duplicates an existing scene object in Lens Studio, with options to specify a new name and parent.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "newName": {
+                            "modelDescription": "Name for the duplicate (defaults to original name with suffix if not provided).",
+                            "type": "string"
+                        },
+                        "objectUUID": {
+                            "modelDescription": "ID of the object to duplicate.",
+                            "type": "string"
+                        },
+                        "parentUUID": {
+                            "modelDescription": "Parent for the new object (defaults to same as original if not provided).",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "DuplicateLensStudioSceneObject",
+                "tags": [
+                    "duplicate",
+                    "copy",
+                    "clone",
+                    "scene object",
+                    "copy object",
+                    "clone object"
+                ],
+                "title": "Duplicate Lens Studio Scene Object"
+            },
+            {
+                "description": "Generates face mask textures using Snap's Aether Stable Diffusion server. Creates realistic face mask textures based on text prompts for use in Lens Studio AR experiences.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "folderPath": {
+                            "modelDescription": "Path to the folder where the face mask texture asset should be created (defaults to 'FaceMaskTextures' if not provided).",
+                            "type": "string"
+                        },
+                        "name": {
+                            "modelDescription": "Name for the generated face mask texture asset.",
+                            "type": "string"
+                        },
+                        "negativePrompt": {
+                            "modelDescription": "Optional negative prompt to specify what should NOT appear in the generated face mask texture.",
+                            "type": "string"
+                        },
+                        "prompt": {
+                            "modelDescription": "Text prompt describing the desired face mask texture (e.g., 'Albert Einstein', 'Golden Retriever', 'cyberpunk robot').",
+                            "type": "string"
+                        },
+                        "seed": {
+                            "default": -1,
+                            "modelDescription": "Optional seed for reproducible results. Use -1 for random generation.",
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "prompt",
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "GenerateFaceMaskTexture",
+                "tags": [
+                    "generate",
+                    "face mask texture",
+                    "create face mask texture",
+                    "AI face mask texture",
+                    "procedural face mask texture"
+                ],
+                "title": "Generate Face Mask Texture"
+            },
+            {
+                "description": "Generates 3D assets quickly using AI. Supports creating multiple assets in a single request. Each generation takes about 60 seconds, and multiple assets can be generated in parallel. Use this for quick 3D asset generation when detailed quality is not the primary concern. SCALE NOTE: Generated meshes are uniformly scaled so their longest axis is 1 cm. When imported as a prefab, a default scale transform of 100 is applied on each axis, so the resulting prefab will measure ~100 cm on its longest axis by default. You should adjust the prefab/scene scale after instantiation to match the expected real-world size of the object.",
+                "icon": "$(cube)",
+                "inputSchema": {
+                    "properties": {
+                        "assetDirectory": {
+                            "default": "GeneratedModels",
+                            "modelDescription": "Optional asset directory for saving generated assets (default: 'GeneratedModels').",
+                            "type": "string"
+                        },
+                        "assets": {
+                            "items": {
+                                "properties": {
+                                    "negativePrompt": {
+                                        "modelDescription": "Optional negative prompt to guide what should not be in the model.",
+                                        "type": "string"
+                                    },
+                                    "prompt": {
+                                        "modelDescription": "Text prompt describing the 3D model to generate.",
+                                        "type": "string"
+                                    },
+                                    "shadowless": {
+                                        "default": true,
+                                        "modelDescription": "Whether the model should have no shadows (default: true).",
+                                        "type": "boolean"
+                                    },
+                                    "simpleName": {
+                                        "modelDescription": "Simple name for the generated asset (e.g., 'oak tree', 'yellow car').",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "simpleName",
+                                    "prompt"
+                                ],
+                                "type": "object"
+                            },
+                            "modelDescription": "Array of 3D assets to generate. SCALE NOTE: Each generated mesh is 1 cm on its longest axis; when imported as a prefab it will initially appear ~100 cm on its longest axis (default transform scale = 100,100,100). You must adjust the scale of the prefab after import to match the expected real-world size of the object.",
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "assets"
+                    ],
+                    "type": "object"
+                },
+                "name": "GenerateFast3DAssets",
+                "tags": [
+                    "3d",
+                    "generate",
+                    "create",
+                    "model",
+                    "3d model",
+                    "ai",
+                    "ai generation",
+                    "fast",
+                    "quick",
+                    "asset",
+                    "rapid",
+                    "mesh",
+                    "object",
+                    "generate 3d",
+                    "create 3d"
+                ],
+                "title": "Generate Fast 3D Assets"
+            },
+            {
+                "description": "Generates general-purpose textures using Snap's Aether Stable Diffusion text-to-image server. Creates PBR textures, tileable patterns, materials, and photorealistic textures based on text prompts.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "folderPath": {
+                            "modelDescription": "Path to the folder where the texture asset should be created (defaults to 'GeneratedTextures' if not provided).",
+                            "type": "string"
+                        },
+                        "guidanceScale": {
+                            "default": 7.5,
+                            "maximum": 20,
+                            "minimum": 1,
+                            "modelDescription": "How closely to follow the prompt. Higher values stick closer to prompt. Range: 1.0-20.0.",
+                            "type": "number"
+                        },
+                        "name": {
+                            "modelDescription": "Name for the generated texture asset.",
+                            "type": "string"
+                        },
+                        "negativePrompt": {
+                            "modelDescription": "Optional negative prompt to specify what should NOT appear in the generated texture.",
+                            "type": "string"
+                        },
+                        "prompt": {
+                            "modelDescription": "Descriptive text prompt for texture generation (e.g., 'PBR metal texture, rust, tileable', 'wood grain photorealistic', 'abstract geometric pattern').",
+                            "type": "string"
+                        },
+                        "seed": {
+                            "default": -1,
+                            "modelDescription": "Optional seed for reproducible results. Use -1 for random generation.",
+                            "type": "integer"
+                        },
+                        "steps": {
+                            "default": 50,
+                            "maximum": 150,
+                            "minimum": 1,
+                            "modelDescription": "Number of generation steps. Higher values may produce better quality but take longer. Range: 1-150.",
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "prompt",
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "GenerateTexture",
+                "tags": [
+                    "generate",
+                    "texture",
+                    "create texture",
+                    "AI texture",
+                    "procedural texture",
+                    "PBR",
+                    "tileable"
+                ],
+                "title": "Generate Texture"
+            },
+            {
+                "description": "Gets information about an asset by its ID in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetUUID": {
+                            "modelDescription": "The UUID of the asset to get information about.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "GetLensStudioAssetById",
+                "tags": [
+                    "get",
+                    "find",
+                    "query",
+                    "asset",
+                    "asset details",
+                    "find by id"
+                ],
+                "title": "Get Lens Studio Asset By ID"
+            },
+            {
+                "description": "Gets information about an asset by its file path in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "path": {
+                            "modelDescription": "The file path to the asset to get information about.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "path"
+                    ],
+                    "type": "object"
+                },
+                "name": "GetLensStudioAssetByPath",
+                "tags": [
+                    "get",
+                    "find",
+                    "query",
+                    "asset",
+                    "asset details",
+                    "find by path"
+                ],
+                "title": "Get Lens Studio Asset By Path"
+            },
+            {
+                "description": "Gets information about assets by name in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "exactMatch": {
+                            "modelDescription": "Whether to require an exact name match (default: false).",
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "modelDescription": "The name of the assets to get information about.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "GetLensStudioAssetsByName",
+                "tags": [
+                    "get",
+                    "find",
+                    "query",
+                    "asset",
+                    "asset details",
+                    "find by name"
+                ],
+                "title": "Get Lens Studio Assets By Name"
+            },
+            {
+                "description": "Reads from Lens Studio logs with time/line limits and category filters. More specialized Log collection tools should be used, where available. This is for use when no other tool can access the required logs.",
+                "icon": "$(output)",
+                "inputSchema": {
+                    "properties": {
+                        "categories": {
+                            "default": [
+                                "preview",
+                                "device",
+                                "tsc",
+                                "main"
+                            ],
+                            "items": {
+                                "enum": [
+                                    "preview",
+                                    "device",
+                                    "tsc",
+                                    "main"
+                                ],
+                                "type": "string"
+                            },
+                            "modelDescription": "Filter which log categories to include. Omit to read all categories.",
+                            "type": "array"
+                        },
+                        "fromCursor": {
+                            "default": 0,
+                            "modelDescription": "Line index cursor to resume from. Use the previous result's nextCursor (line-based) for pagination.",
+                            "type": "number"
+                        },
+                        "maxLines": {
+                            "default": 100,
+                            "modelDescription": "Maximum number of log lines to return. Set 0 for no line limit.",
+                            "type": "number"
+                        },
+                        "timeWindowMs": {
+                            "default": 30000,
+                            "modelDescription": "Time window in milliseconds of logs to return (e.g. 2000 returns logs from the last 2 seconds). Not a processing-time limit.",
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "name": "GetLensStudioLogsTool",
+                "tags": [
+                    "logs",
+                    "tsc",
+                    "preview",
+                    "device",
+                    "runtime"
+                ],
+                "title": "Read Lens Studio Logs"
+            },
+            {
+                "description": "Return the scene graph structure.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "depthLimit": {
+                            "modelDescription": "Optional maximum depth to traverse (defaults to all).",
+                            "type": "number"
+                        },
+                        "prefabAssetUUID": {
+                            "modelDescription": "Optional ID of an ObjectPrefab to traverse instead of the scene.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                    ],
+                    "type": "object"
+                },
+                "name": "GetLensStudioSceneGraph",
+                "tags": [
+                    "scene",
+                    "graph",
+                    "query"
+                ],
+                "title": "Get Scene Graph"
+            },
+            {
+                "description": "Gets detailed information about a scene object by its ID in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "objectUUID": {
+                            "modelDescription": "UUID of the scene object to get detailed information about.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "GetLensStudioSceneObjectById",
+                "tags": [
+                    "get",
+                    "find",
+                    "query",
+                    "scene object",
+                    "object details",
+                    "find by id"
+                ],
+                "title": "Get Lens Studio Scene Object By ID"
+            },
+            {
+                "description": "Gets scene objects with a specific name in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "maxObjects": {
+                            "modelDescription": "Maximum number of objects to get information about, if there's more than one. If this is not provided, there will be an error if there's more than one match.",
+                            "type": "number"
+                        },
+                        "name": {
+                            "modelDescription": "Name of the scene object to get information about.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "name": "GetLensStudioSceneObjectByName",
+                "tags": [
+                    "get",
+                    "find",
+                    "query",
+                    "scene object",
+                    "object details",
+                    "find by name"
+                ],
+                "title": "Get Lens Studio Scene Object By Name"
+            },
+            {
+                "description": "Retrieves a list of presets built into the Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "presetType": {
+                            "enum": [
+                                "Component",
+                                "SceneObject",
+                                "Asset"
+                            ],
+                            "modelDescription": "Optional type of preset to filter by. If not provided, all presets will be returned.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "name": "GetPresetRegistryTool",
+                "tags": [
+                    "get",
+                    "lens studio",
+                    "preset",
+                    "registry",
+                    "built-in presets"
+                ],
+                "title": "Get Lens Studio Preset Registry"
+            },
+            {
+                "description": "Installs a package from a URI. Can be used on any URI, both local and remote;\nImportant: use this to import/install assets from the Asset Library\nNote: Some packages are automatically instantiated in the scene after installation. Use scene introspection before attempting instantiation to avoid duplicates.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetName": {
+                            "modelDescription": "Name of the asset library asset. Sometimes file name might not be accurate enough.",
+                            "type": "string"
+                        },
+                        "packageUri": {
+                            "modelDescription": "URI of the package to install.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "packageUri"
+                    ],
+                    "type": "object"
+                },
+                "name": "InstallLensStudioPackage",
+                "tags": [
+                    "install",
+                    "import",
+                    "add",
+                    "asset",
+                    "library",
+                    "asset library",
+                    "marketplace",
+                    "download"
+                ],
+                "title": "Install Lens Studio Package"
+            },
+            {
+                "description": "Installs a licensed music track from the music library search results into the Lens Studio project as a LicensedAudioTrack asset. The music files will be automatically downloaded when needed and are not stored permanently for legal compliance.",
+                "icon": "$(music)",
+                "inputSchema": {
+                    "properties": {
+                        "folderPath": {
+                            "modelDescription": "Optional target folder path in the project to install the music asset.",
+                            "type": "string"
+                        },
+                        "musicAsset": {
+                            "modelDescription": "The music asset from search results to install.",
+                            "properties": {
+                                "artistName": {
+                                    "modelDescription": "Name of the artist.",
+                                    "type": "string"
+                                },
+                                "assetUUID": {
+                                    "modelDescription": "Unique identifier for the music track.",
+                                    "type": "string"
+                                },
+                                "bpm": {
+                                    "modelDescription": "Beats per minute.",
+                                    "type": "number"
+                                },
+                                "duration": {
+                                    "modelDescription": "Duration in seconds.",
+                                    "type": "number"
+                                },
+                                "genre": {
+                                    "modelDescription": "Music genre.",
+                                    "type": "string"
+                                },
+                                "isExplicit": {
+                                    "modelDescription": "Whether the music contains explicit content.",
+                                    "type": "boolean"
+                                },
+                                "mood": {
+                                    "modelDescription": "Music mood/emotion.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "modelDescription": "Name of the music track.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "assetUUID",
+                                "name"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "musicAsset"
+                    ],
+                    "type": "object"
+                },
+                "name": "InstallLicensedMusic",
+                "tags": [
+                    "install",
+                    "add",
+                    "music",
+                    "audio",
+                    "track",
+                    "licensed",
+                    "song",
+                    "sound"
+                ],
+                "title": "Install Licensed Music Track"
+            },
+            {
+                "description": "Instantiates a prefab asset in the Lens Studio scene.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "name": {
+                            "modelDescription": "Optional name for the instantiated prefab.",
+                            "type": "string"
+                        },
+                        "parentUUID": {
+                            "modelDescription": "Optional ID of the parent scene object.",
+                            "type": "string"
+                        },
+                        "prefabAssetUUID": {
+                            "modelDescription": "The ID or path of the prefab asset to instantiate.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "prefabAssetUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "InstantiateLensStudioPrefab",
+                "tags": [
+                    "instantiate",
+                    "create",
+                    "prefab",
+                    "add",
+                    "instance"
+                ],
+                "title": "Instantiate Lens Studio Prefab"
+            },
+            {
+                "description": "Creates a new lens based on a text description. Use this when the user asks to create, generate, or build a lens, AR effect, or AR experience. This tool will generate the necessary components, assets, and code to build a complete lens in the project. Use this only when the task involves creating a complete end-to-end lens or AR experience, not for simple or isolated actions. This tool should be called using the exact prompt that the user provides. No summarization or paraphrasing should be done.",
+                "icon": "$(wand)",
+                "inputSchema": {
+                    "properties": {
+                        "prompt": {
+                            "modelDescription": "The user's request for lens creation, exactly as they typed it.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "prompt"
+                    ],
+                    "type": "object"
+                },
+                "name": "LensCreator",
+                "tags": [
+                    "create",
+                    "lens",
+                    "ar",
+                    "effect",
+                    "generate",
+                    "build",
+                    "ar experience",
+                    "face effect",
+                    "world effect",
+                    "image effect",
+                    "ar lens",
+                    "lens creation",
+                    "generate lens",
+                    "make lens"
+                ],
+                "title": "Lens creation"
+            },
+            {
+                "description": "Lists all packages installed in Lens Studio. This is helpful for understanding what capabilities are available in the current project.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "includeDetails": {
+                            "default": true,
+                            "modelDescription": "Include detailed information about each package, including README content.",
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                "name": "ListInstalledPackagesTool",
+                "tags": [
+                    "list",
+                    "packages",
+                    "installed",
+                    "libraries",
+                    "lens studio",
+                    "package management",
+                    "dependencies"
+                ],
+                "title": "List Installed Lens Studio Packages"
+            },
+            {
+                "description": "Lists all assets in Lens Studio with optional filtering.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetTypeFilter": {
+                            "enum": [
+                                "AnimatedTexture",
+                                "AnimationAsset",
+                                "AnimationCurveTrack",
+                                "AnimationLayer",
+                                "AnimationMixerLayer",
+                                "AsrModule",
+                                "Asset",
+                                "AudioOutput",
+                                "AudioTrackAsset",
+                                "BinAsset",
+                                "BitmojiModule",
+                                "BluetoothCentralModule",
+                                "BodyDepthTexture",
+                                "BodyInstanceSegmentationTexture",
+                                "BodyMesh",
+                                "BodyNormalsTexture",
+                                "BodyTracking3DAsset",
+                                "CameraModule",
+                                "CameraRollModule",
+                                "CloudStorageModule",
+                                "ColocatedLandmarks2DMesh",
+                                "ColocatedLandmarks3DMesh",
+                                "CommerceKitModule",
+                                "ConnectedLensModule",
+                                "DeepLinkModule",
+                                "DepthModule",
+                                "DepthStencilRenderTarget",
+                                "DepthTexture",
+                                "DeviceCameraTexture",
+                                "DeviceTrackingModule",
+                                "DialogModule",
+                                "ExternalMusicModule",
+                                "FaceCropTexture",
+                                "FaceImagePickerTexture",
+                                "FaceMesh",
+                                "FaceTexture",
+                                "FaceTrackingModule",
+                                "FaceTrackingScope",
+                                "FileAudioTrack",
+                                "FileMLAsset",
+                                "FileMesh",
+                                "FileTexture",
+                                "FileTexture2DArray",
+                                "FileTexture3D",
+                                "FileTextureCubemap",
+                                "Filter",
+                                "Font",
+                                "GaussianSplattingAsset",
+                                "HairDataAsset",
+                                "HandTracking3DAsset",
+                                "Human3DBinAsset",
+                                "ImageMarker",
+                                "ImagePickerTexture",
+                                "InternetModule",
+                                "JavaScriptAsset",
+                                "JsonAsset",
+                                "LeaderboardModule",
+                                "LevelsetColliderAsset",
+                                "LicensedAudioTrack",
+                                "LocalizationsAsset",
+                                "LocationAsset",
+                                "LocationCloudStorageModule",
+                                "LocationMesh",
+                                "LocationTexture",
+                                "MLAsset",
+                                "MapModule",
+                                "MarkdownAsset",
+                                "MarkerAsset",
+                                "Material",
+                                "Matter",
+                                "MediaPickerTexture",
+                                "MicrophoneAudioTrack",
+                                "MotionControllerModule",
+                                "NativePackageDescriptor",
+                                "Object3DAsset",
+                                "ObjectOwner",
+                                "ObjectPrefab",
+                                "ObjectTrackingAsset",
+                                "ObjectTrackingTexture",
+                                "Pass",
+                                "PersonTrackingScope",
+                                "ProcessedLocationModule",
+                                "ProxyTexture",
+                                "RawLocationModule",
+                                "RayTracingSettings",
+                                "RemoteMLAsset",
+                                "RemoteMediaModule",
+                                "RemoteReferenceAsset",
+                                "RemoteServiceModule",
+                                "RenderMesh",
+                                "RenderTarget",
+                                "ReverseCameraTexture",
+                                "ScanModule",
+                                "Scene",
+                                "ScreenCropTexture",
+                                "ScreenTexture",
+                                "ScriptAsset",
+                                "ScriptGraphAsset",
+                                "SegmentationTexture",
+                                "ShaderGraphPass",
+                                "ShoppingModule",
+                                "SnapcodeMarker",
+                                "SubgraphAsset",
+                                "SupabaseModule",
+                                "SupabaseProject",
+                                "TextInputModule",
+                                "TextTexture",
+                                "TextToSpeechModule",
+                                "Texture",
+                                "TextureTrackingScope",
+                                "TrackingScope",
+                                "TypeScriptAsset",
+                                "UpperBodyMesh",
+                                "UpperBodyTracking3DAsset",
+                                "VFXAsset",
+                                "VideoTexture",
+                                "VoiceMLModule",
+                                "WorldDepthTexture",
+                                "WorldMesh",
+                                "WorldQueryModule",
+                                "WorldSettingsAsset",
+                                "WorldSettingsBase",
+                                "WorldUnderstandingModule"
+                            ],
+                            "modelDescription": "Filter by asset type (e.g., 'Material', 'Texture').",
+                            "type": "string"
+                        },
+                        "includeName": {
+                            "default": true,
+                            "modelDescription": "Include the asset name in the output",
+                            "type": "boolean"
+                        },
+                        "includePath": {
+                            "default": false,
+                            "modelDescription": "Include the asset path in the output",
+                            "type": "boolean"
+                        },
+                        "includeProperties": {
+                            "default": false,
+                            "modelDescription": "Include the asset properties in the output",
+                            "type": "boolean"
+                        },
+                        "includeType": {
+                            "default": false,
+                            "modelDescription": "Include the asset type in the output",
+                            "type": "boolean"
+                        },
+                        "includeUUID": {
+                            "default": false,
+                            "modelDescription": "Include the asset ID in the output",
+                            "type": "boolean"
+                        },
+                        "nameFilter": {
+                            "modelDescription": "Pattern to filter assets by name. Use broad terms.",
+                            "type": "string"
+                        },
+                        "pathFilter": {
+                            "modelDescription": "Pattern to filter assets by file path.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "name": "ListLensStudioAssets",
+                "tags": [
+                    "list",
+                    "assets",
+                    "get assets",
+                    "find assets",
+                    "search assets",
+                    "browse assets"
+                ],
+                "title": "List Lens Studio Assets"
+            },
+            {
+                "description": "Moves an asset to a new location in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetUUID": {
+                            "modelDescription": "The ID of the asset to move.",
+                            "type": "string"
+                        },
+                        "destinationPath": {
+                            "modelDescription": "The destination folder path.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetUUID",
+                        "destinationPath"
+                    ],
+                    "type": "object"
+                },
+                "name": "MoveLensStudioAsset",
+                "tags": [
+                    "move",
+                    "relocate",
+                    "asset",
+                    "move asset",
+                    "relocate asset"
+                ],
+                "title": "Move Lens Studio Asset"
+            },
+            {
+                "description": "Ask natural-language questions about Lens Studio features, components, scripting APIs, node graphs, materials/VFX, and common workflows. Answers are sourced from a curated knowledge base of official documentation and examples, with links to sources. STRICT RULE: Do not use this tool for TypeScript/tsc/build/compile error questions — use 'Run TypeScript Compile (with logs)' and your knowledge of TypeScript instead.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "question": {
+                            "modelDescription": "Your Lens Studio question (features/APIs/workflows). Do not ask TypeScript or compile/logs questions here.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "question"
+                    ],
+                    "type": "object"
+                },
+                "name": "QueryLensStudioRag",
+                "tags": [
+                    "docs",
+                    "search",
+                    "knowledge-base",
+                    "ai"
+                ],
+                "title": "Query Lens Studio Knowledge Base"
+            },
+            {
+                "description": "Read or write a text file.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "action": {
+                            "enum": [
+                                "read",
+                                "write"
+                            ],
+                            "modelDescription": "Operation to perform: 'read' or 'write'.",
+                            "type": "string"
+                        },
+                        "content": {
+                            "modelDescription": "Content to write (write action only).",
+                            "type": "string"
+                        },
+                        "filePath": {
+                            "modelDescription": "Path to the file within the project assets directory.",
+                            "type": "string"
+                        },
+                        "fromLine": {
+                            "modelDescription": "Zero-based start line for read/write operations.",
+                            "type": "number"
+                        },
+                        "maxLines": {
+                            "modelDescription": "Maximum lines to read (pagination).",
+                            "type": "number"
+                        },
+                        "operation": {
+                            "enum": [
+                                "Replace",
+                                "InsertBefore",
+                                "InsertAfter"
+                            ],
+                            "modelDescription": "Write operation when using line ranges.",
+                            "type": "string"
+                        },
+                        "overrideLines": {
+                            "modelDescription": "Ignored for Chat Tool; kept for compatibility.",
+                            "type": "boolean"
+                        },
+                        "toLine": {
+                            "modelDescription": "Inclusive end line for write operations. Defaults to fromLine.",
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "action",
+                        "filePath"
+                    ],
+                    "type": "object"
+                },
+                "name": "ReadWriteTextFile",
+                "tags": [
+                    "io",
+                    "file",
+                    "text"
+                ],
+                "title": "Read Write Text File"
+            },
+            {
+                "description": "Renames an asset in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "assetUUID": {
+                            "modelDescription": "The ID of the asset to rename.",
+                            "type": "string"
+                        },
+                        "newName": {
+                            "modelDescription": "The new name for the asset.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetUUID",
+                        "newName"
+                    ],
+                    "type": "object"
+                },
+                "name": "RenameAsset",
+                "tags": [
+                    "rename",
+                    "rename asset",
+                    "change name",
+                    "asset"
+                ],
+                "title": "Rename Lens Studio Asset"
+            },
+            {
+                "description": "Renames an existing scene object in Lens Studio.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "newName": {
+                            "modelDescription": "New name for the object.",
+                            "type": "string"
+                        },
+                        "objectUUID": {
+                            "modelDescription": "ID of the scene object to rename.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID",
+                        "newName"
+                    ],
+                    "type": "object"
+                },
+                "name": "RenameLensStudioSceneObject",
+                "tags": [
+                    "rename",
+                    "change name",
+                    "scene object",
+                    "rename object"
+                ],
+                "title": "Rename Lens Studio Scene Object"
+            },
+            {
+                "description": "Resets all preview instances, starts running them, then collects runtime logs for up to maxRuntimeMs or until maxLines is reached. Use this to ensure that scripts execute successfully.",
+                "icon": "$(debug-alt)",
+                "inputSchema": {
+                    "properties": {
+                        "maxLines": {
+                            "default": 1000,
+                            "modelDescription": "Maximum number of log lines to return (use to cap output in case of excessive logging).",
+                            "type": "number"
+                        },
+                        "maxRuntimeMs": {
+                            "default": 3000,
+                            "modelDescription": "Max time in milliseconds to collect logs after we start running the preview, before returning.",
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "name": "RunAndCollectLogsTool",
+                "tags": [
+                    "runtime",
+                    "preview",
+                    "logs"
+                ],
+                "title": "Check Preview Runtime Logs"
+            },
+            {
+                "description": "Searches the Lens Studio asset library for assets matching specified filters. Results are paginated and limited to 20 assets. You may call this tool multiple times to get more results. Use wider search first across types and categories to get more results. ",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "categoryFilter": {
+                            "enum": [
+                                "ESSENTIALS",
+                                "TWO_DIMENSIONAL",
+                                "MATERIALS",
+                                "TOOLS",
+                                "VFX",
+                                "SNAPML",
+                                "AUDIO",
+                                "REFERENCE",
+                                "GAMES",
+                                "SPECTACLES",
+                                "CUSTOM_COMPONENTS",
+                                "UI",
+                                "SCRIPT_MODULE",
+                                "PLUGIN"
+                            ],
+                            "modelDescription": "Filter by asset category. Plugin category is not meant to be added to scene but can be installed by user.",
+                            "type": "string"
+                        },
+                        "keywordFilter": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "modelDescription": "Keywords that might describe the asset. Use multiple broad keywords to get more results. For example, 'cat' and 'dog' will return all assets that contain either keyword.",
+                            "type": "array"
+                        },
+                        "offset": {
+                            "modelDescription": "The offset of the first asset to return. Used for pagination.",
+                            "type": "number"
+                        },
+                        "onlyMostRecent": {
+                            "modelDescription": "When true, only returns the most recent version of each asset. This helps reduce duplicate results when assets have multiple versions.",
+                            "type": "boolean"
+                        },
+                        "typeFilter": {
+                            "enum": [
+                                "Default",
+                                "Script",
+                                "Audio",
+                                "Music",
+                                "CustomComponent",
+                                "AssetPackage",
+                                "Plugin"
+                            ],
+                            "modelDescription": "Filter assets by type. Assets are filtered by type after the keyword search.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "keywordFilter",
+                        "onlyMostRecent"
+                    ],
+                    "type": "object"
+                },
+                "name": "SearchLensStudioAssetLibrary",
+                "tags": [
+                    "search",
+                    "find",
+                    "asset",
+                    "library",
+                    "asset library",
+                    "marketplace",
+                    "resource",
+                    "prefab",
+                    "model",
+                    "texture",
+                    "add",
+                    "import"
+                ],
+                "title": "Search Lens Studio Asset Library"
+            },
+            {
+                "description": "Searches the Lens Studio music library for licensed music tracks and audio assets. Use this specifically for finding music, songs, audio tracks, or when users mention artists, song titles, or musical content.",
+                "icon": "$(music)",
+                "inputSchema": {
+                    "properties": {
+                        "countryCode": {
+                            "modelDescription": "2-character country code (e.g., 'US', 'GB', 'CA') for geographic licensing validation. If not provided, will attempt to detect from VS Code locale.",
+                            "type": "string"
+                        },
+                        "explicitContentFilter": {
+                            "default": "exclude",
+                            "enum": [
+                                "include",
+                                "exclude",
+                                "only"
+                            ],
+                            "modelDescription": "Filter for explicit content: 'include' (all content), 'exclude' (no explicit content), 'only' (explicit content only).",
+                            "type": "string"
+                        },
+                        "genreFilter": {
+                            "modelDescription": "Filter by music genre (e.g., 'Pop', 'Rock', 'Electronic', 'Hip Hop', 'Classical').",
+                            "type": "string"
+                        },
+                        "keywordFilter": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "modelDescription": "Keywords for searching music tracks. Can include song titles, artist names, or descriptive terms like 'upbeat', 'calm', etc.",
+                            "type": "array"
+                        },
+                        "moodFilter": {
+                            "modelDescription": "Filter by mood or emotion (e.g., 'Happy', 'Sad', 'Energetic', 'Calm', 'Dramatic').",
+                            "type": "string"
+                        },
+                        "onlyMostRecent": {
+                            "default": true,
+                            "modelDescription": "When true, only returns the most recent version of each music asset.",
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                "name": "SearchLensStudioMusicLibrary",
+                "tags": [
+                    "music",
+                    "audio",
+                    "song",
+                    "track",
+                    "licensed music",
+                    "background music",
+                    "soundtrack",
+                    "artist",
+                    "genre",
+                    "mood",
+                    "bpm",
+                    "beats",
+                    "rhythm",
+                    "sound",
+                    "melody"
+                ],
+                "title": "Search Lens Studio Music Library"
+            },
+            {
+                "description": "Moves a scene object to a new parent in the Lens Studio scene hierarchy. An ObjectPrefab asset ID can also be used. If no new parent ID is provided, the object will be moved to the root level of the scene.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "objectUUID": {
+                            "modelDescription": "ID of the scene object to be moved.",
+                            "type": "string"
+                        },
+                        "parentUUID": {
+                            "modelDescription": "ID of the new parent SceneObject, or ObjectPrefab asset ID. (optional, if not provided, the object will be moved to the scene root).",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID"
+                    ],
+                    "type": "object"
+                },
+                "name": "SetLensStudioParent",
+                "tags": [
+                    "move",
+                    "reparent",
+                    "parent",
+                    "hierarchy",
+                    "scene graph",
+                    "organize",
+                    "structure",
+                    "move object",
+                    "change parent",
+                    "reposition",
+                    "restructure"
+                ],
+                "title": "Move Lens Studio Object"
+            },
+            {
+                "description": "Sets the value of a property on a scene object, component, or asset in Lens Studio by object ID. Supports array values where the valueType applies to each element in the array.",
+                "icon": "$(files)",
+                "inputSchema": {
+                    "properties": {
+                        "enumType": {
+                            "modelDescription": "Required when valueType is 'enum'. Specifies the enum type (e.g., 'Editor.Components.RenderMeshVisual.BlendMode').",
+                            "type": "string"
+                        },
+                        "objectUUID": {
+                            "modelDescription": "ID of the scene object, component, or asset.",
+                            "type": "string"
+                        },
+                        "propertyPath": {
+                            "modelDescription": "Path to the property (e.g., 'enabled', 'intensity', 'mainMaterial.passInfo.0.baseColor', 'bundled' for assets). For script component properties, use the property name directly as the path (e.g., 'exampleBool, 'myStruct.a'), not inputs.exampleBool, exampleBool.value, or any other variant. For different custom types of inputs of a ScriptComponent you may set the whole object at once, but only for simple properties like boolean, number, string, enum.For other types vec2, vec3, vec4, mat3, transform, reference, rect set them individually. RenderLayer property of a SceneObject, Camera or LightSource is a special case and is set using the valueType of type 'layer_set_mask'. In this case the value should be a mask, not a LayerSet object. Value for the reference type should be the object ID, not an object. ",
+                            "type": "string"
+                        },
+                        "value": {
+                            "modelDescription": "The new value to set. Can be a single value or an array of values. When an array is provided, the valueType applies to each element in the array."
+                        },
+                        "valueType": {
+                            "enum": [
+                                "number",
+                                "string",
+                                "boolean",
+                                "enum",
+                                "vec2",
+                                "vec3",
+                                "vec4",
+                                "mat3",
+                                "transform",
+                                "reference",
+                                "rect",
+                                "layer_set_mask"
+                            ],
+                            "modelDescription": "Type information to assist with conversion. If using a vec2/3/4, the type is {x:x,y:y,z:z,w:w:}. Reference is a link to another scene object or component, and is a string representing the object ID. When value is an array, this type applies to each element.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "objectUUID",
+                        "propertyPath",
+                        "value",
+                        "valueType"
+                    ],
+                    "type": "object"
+                },
+                "name": "SetLensStudioProperty",
+                "tags": [
+                    "property",
+                    "enable",
+                    "disable",
+                    "re-enable",
+                    "property value",
+                    "value",
+                    "modify",
+                    "change",
+                    "set",
+                    "set property",
+                    "set property value",
+                    "set component property",
+                    "set component value",
+                    "set value",
+                    "set scene object property",
+                    "set scene object value",
+                    "set asset property",
+                    "set asset value",
+                    "bundled",
+                    "unbundled",
+                    "licensed music",
+                    "licensed audio",
+                    "audio track"
+                ],
+                "title": "Set Lens Studio Property"
+            }
+        ]
+    }
+}

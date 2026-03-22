@@ -1,0 +1,13 @@
+{
+    "id": 30,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"componentType\":\"ScriptComponent\",\"componentUUID\":\"8e820e42-e317-4bc8-b380-42e416acef75\",\"message\":\"Successfully created component from preset \\\"TypeScriptFileComponentPreset\\\" on object \\\"MyTasksTab\\\".\",\"objectUUID\":\"e8f1d42f-9eed-4b63-b528-c2b04d97f7cd\"}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

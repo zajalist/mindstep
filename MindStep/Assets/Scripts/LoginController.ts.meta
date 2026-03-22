@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/e749c83f-92f8-40be-92d4-d50e7ddb796c>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 91dd3c2d-daf9-4e22-93b3-4c015ad8b4de
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 91dd3c2d-daf9-4e22-93b3-4c015ad8b4de
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 8cc74435-4885-473e-aa86-cecfd80445f0
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/8cc74435-4885-473e-aa86-cecfd80445f0>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 435077de-c7c4-4293-9939-5a34893b03da
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    guestButton: false
+    loginButton: false
+    statusText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - guestButton: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+      loginButton: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      statusText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Login UI"}'
+    - // @input AssignableType guestButton
+    - // @input AssignableType_1 loginButton
+    - // @input Component.Text statusText
+    - '// @ui {"widget":"group_end"}'

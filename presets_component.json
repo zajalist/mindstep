@@ -1,0 +1,13 @@
+{
+    "id": 101,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"presets\":[{\"description\":\"\",\"entityType\":\"Canvas\",\"name\":\"CanvasComponentPreset\",\"section\":\"2D\"},{\"description\":\"\",\"entityType\":\"EyeColorVisual\",\"name\":\"EyeColorComponentPreset\",\"section\":\"Face\"},{\"description\":\"\",\"entityType\":\"FaceInsetVisual\",\"name\":\"FaceInsetComponentPreset\",\"section\":\"Face\"},{\"description\":\"\",\"entityType\":\"FaceMaskVisual\",\"name\":\"FaceMaskComponentPreset\",\"section\":\"Face\"},{\"description\":\"\",\"entityType\":\"Component\",\"name\":\"GPUParticlesComponentPreset\",\"section\":\"Visual Effects\"},{\"description\":\"\",\"entityType\":\"Image\",\"name\":\"ImageComponentPreset\",\"section\":\"2D\"},{\"description\":\"\",\"entityType\":\"ScriptComponent\",\"name\":\"JavaScriptFileComponentPreset\",\"section\":\"Scripts\"},{\"description\":\"\",\"entityType\":\"Component\",\"name\":\"RenderMeshVisualPBRComponentPreset\",\"section\":\"3D\"},{\"description\":\"\",\"entityType\":\"Text3D\",\"name\":\"Text3DComponentPreset\",\"section\":\"3D\"},{\"description\":\"\",\"entityType\":\"Text\",\"name\":\"TextComponentPreset\",\"section\":\"2D\"},{\"description\":\"\",\"entityType\":\"ScriptComponent\",\"name\":\"TypeScriptFileComponentPreset\",\"section\":\"Scripts\"}]}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

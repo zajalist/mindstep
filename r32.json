@@ -1,0 +1,13 @@
+{
+    "id": 32,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"componentType\":\"ScriptComponent\",\"componentUUID\":\"565cc44e-34da-4cb3-80ee-1405e5567549\",\"message\":\"Successfully created component from preset \\\"TypeScriptFileComponentPreset\\\" on object \\\"ProfileTab\\\".\",\"objectUUID\":\"d936ea5f-e852-45a6-8222-da3f8c642b4e\"}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

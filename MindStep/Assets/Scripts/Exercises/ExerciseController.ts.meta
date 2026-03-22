@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/c00d75e4-cc6c-4345-b4ab-bd9b413d7cb7>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 593691f1-94aa-456e-8afb-fa5f4e2f438b
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 593691f1-94aa-456e-8afb-fa5f4e2f438b
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 688e9a0c-cfbc-4071-bec8-3fb1f8cc67b6
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/688e9a0c-cfbc-4071-bec8-3fb1f8cc67b6>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 416eef14-ccfb-4e0e-88f9-bf251d4b3007
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    exitButton: false
+    progressDotsImage: false
+    stepText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - stepText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      progressDotsImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
+      exitButton: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Exercise HUD"}'
+    - // @input Component.Text stepText
+    - // @input Component.Image progressDotsImage
+    - // @input AssignableType exitButton
+    - '// @ui {"widget":"group_end"}'

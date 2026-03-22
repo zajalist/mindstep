@@ -1,0 +1,13 @@
+# MindStep - Cognitive Rehabilitation Lens Studio Project
+# Documentation: https://developers.snap.com/lens-studio/lens-studio-workflow/advanced/source-control
+
+# Ignore build artifacts and IDE files
+.DS_Store
+*.log
+*.tmp
+
+# Ignore node_modules if present
+node_modules/
+
+# Lens Studio project files (handled by MindStep/.gitattributes and .gitignore)
+# This .gitignore is for the root directory only

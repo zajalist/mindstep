@@ -1,0 +1,13 @@
+{
+    "id": 4,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"message\":\"Successfully found 1 scene object(s) with name 'ExerciseHUD'.\",\"objects\":[{\"children\":[],\"components\":[],\"enabled\":false,\"id\":\"a6c53dec-bdb9-4cad-94dd-c70f8dcd6f67\",\"layers\":{\"type\":\"layer_set_mask\",\"value\":1},\"localTransform\":{\"position\":{\"x\":0,\"y\":0,\"z\":0},\"rotation\":{\"x\":0,\"y\":0,\"z\":0},\"scale\":{\"x\":1,\"y\":1,\"z\":1}},\"name\":\"ExerciseHUD\",\"type\":\"SceneObject\"}]}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

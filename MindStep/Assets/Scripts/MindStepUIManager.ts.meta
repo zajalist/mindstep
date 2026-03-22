@@ -1,0 +1,92 @@
+- !<AssetImportMetadata/78f49cf5-9bc5-40e7-8218-a687fcc6426e>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> e71cdeed-dccc-4a8a-b2a8-75cc2dd02832
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> e71cdeed-dccc-4a8a-b2a8-75cc2dd02832
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 954545de-64c1-4f0c-97d2-470a40389f24
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/954545de-64c1-4f0c-97d2-470a40389f24>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 0c390942-3162-4e57-b142-29574364c000
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    browsePanel: false
+    browseTab: false
+    confirmBackButton: false
+    confirmPanel: false
+    confirmStartButton: false
+    dashboard: false
+    dashboardBackButton: false
+    exerciseExitButton: false
+    exerciseScene: false
+    homeScreen: false
+    homeStartButton: false
+    myTasksPanel: false
+    myTasksTab: false
+    profilePanel: false
+    profileTab: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - homeScreen: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      dashboard: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      confirmPanel: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      exerciseScene: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      myTasksTab: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+      browseTab: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      profileTab: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      myTasksPanel: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      browsePanel: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      profilePanel: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      homeStartButton: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
+      dashboardBackButton: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
+      confirmBackButton: !<MappingBased.AssignableType_5> 00000000-0000-0000-0000-000000000000
+      confirmStartButton: !<MappingBased.AssignableType_6> 00000000-0000-0000-0000-000000000000
+      exerciseExitButton: !<MappingBased.AssignableType_7> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Screen Objects"}'
+    - // @input SceneObject homeScreen
+    - // @input SceneObject dashboard
+    - // @input SceneObject confirmPanel
+    - // @input SceneObject exerciseScene
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Dashboard Tabs"}'
+    - // @input AssignableType myTasksTab
+    - // @input AssignableType_1 browseTab
+    - // @input AssignableType_2 profileTab
+    - // @input SceneObject myTasksPanel
+    - // @input SceneObject browsePanel
+    - // @input SceneObject profilePanel
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Navigation Buttons"}'
+    - // @input AssignableType_3 homeStartButton
+    - // @input AssignableType_4 dashboardBackButton
+    - // @input AssignableType_5 confirmBackButton
+    - // @input AssignableType_6 confirmStartButton
+    - // @input AssignableType_7 exerciseExitButton
+    - '// @ui {"widget":"group_end"}'

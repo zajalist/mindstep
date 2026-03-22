@@ -1,0 +1,13 @@
+{
+    "id": 33,
+    "jsonrpc": "2.0",
+    "result": {
+        "content": [
+            {
+                "text": "{\"message\":\"Successfully created new scene object 'ProfilePanel'.\",\"name\":\"ProfilePanel\",\"objectUUID\":\"b35857c5-18b4-4434-8011-1461a9aaeb54\",\"parentUUID\":\"91c0b14f-cba8-4679-8d77-e63e4f511d1e\"}",
+                "type": "text"
+            }
+        ],
+        "isError": false
+    }
+}

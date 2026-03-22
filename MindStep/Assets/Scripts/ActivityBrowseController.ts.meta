@@ -1,0 +1,58 @@
+- !<AssetImportMetadata/51291274-ef88-42aa-b2c3-c9293dad8eaa>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 0b5b6fdf-ee20-42ff-8e5a-db723b730a4a
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 0b5b6fdf-ee20-42ff-8e5a-db723b730a4a
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 38d556bb-16b8-4513-b7e4-fa443421c319
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/38d556bb-16b8-4513-b7e4-fa443421c319>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 4e312a02-156f-4391-9b40-ee4cb0236540
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    activityCardPrefab: false
+    activityScrollView: false
+    gridContainer: false
+    itemSpacing: false
+    totalActivitiesCount: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - activityScrollView: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      activityCardPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      gridContainer: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      totalActivitiesCount: !<float> 10.000000
+      itemSpacing: 5.500000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"group_start", "label":"Activity Browse Setup"}'
+    - '// @input SceneObject activityScrollView {"hint":"ScrollView container for activity cards"}'
+    - '// @input Asset.ObjectPrefab activityCardPrefab {"hint":"Prefab to instantiate for each activity"}'
+    - '// @input SceneObject gridContainer {"hint":"Parent container for grid layout"}'
+    - '// @input float totalActivitiesCount = 10 {"hint":"Total activities to show (2 real + N skeleton)"}'
+    - '// @input float itemSpacing = 5.5 {"hint":"Vertical spacing between cards in cm"}'
+    - '// @ui {"widget":"group_end"}'
